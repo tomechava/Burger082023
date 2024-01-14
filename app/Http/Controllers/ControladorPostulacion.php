@@ -11,7 +11,11 @@ class ControladorPostulacion extends Controller {
 
     }
 
-
+    public function index()
+    {
+            $titulo = "Listado de Postulaciones";
+            return view('sistema.postulacion-listar', compact('titulo'));
+    }
 }
 
 

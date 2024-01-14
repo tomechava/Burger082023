@@ -11,6 +11,11 @@ class ControladorProducto extends Controller {
 
     }
 
+    public function index()
+    {
+            $titulo = "Listado de Productos";
+            return view('sistema.producto-listar', compact('titulo'));
+    }
 
 }
 
