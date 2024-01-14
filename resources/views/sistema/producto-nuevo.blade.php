@@ -57,14 +57,22 @@
                     <input type="number" id="txtPrecio" name="txtPrecio" class="form-control" value="" required>
                 </div>
                 <div class="form-group col-lg-6">
-                    <label>Imagen: </label>
-                    <input type="file" id="imgProducto" name="imgProducto" class="form-control" accept=".jpg, .jpeg, .png">
+                    <label>Categoría: *</label>
+                    <select name="lstCategoria" id="lstCategoria" class="form-control">
+                        <option value="" selected disabled>Seleccionar</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-lg-12">
                     <label>Descripción: </label>
                     <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-lg-6">
+                    <label>Imagen: </label>
+                    <input type="file" id="imgProducto" name="imgProducto" class="form-control" accept=".jpg, .jpeg, .png">
                 </div>
             </div>
       </form>
