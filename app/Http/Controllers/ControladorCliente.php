@@ -11,6 +11,12 @@ class ControladorCliente extends Controller {
 
     }
 
+    public function index()
+    {
+            $titulo = "Listado de Clientes";
+            return view('sistema.cliente-listar', compact('titulo'));
+    }
+
 
 }
 

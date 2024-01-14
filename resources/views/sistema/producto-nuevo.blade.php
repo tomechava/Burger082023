@@ -12,11 +12,11 @@
 @section('breadcrumb')
 <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/admin/home">Inicio</a></li>
-      <li class="breadcrumb-item"><a href="/admin/clientes">Clientes</a></li>
+      <li class="breadcrumb-item"><a href="/admin/productos">Productos</a></li>
       <li class="breadcrumb-item active">Modificar</li>
 </ol>
 <ol class="toolbar">
-      <li class="btn-item"><a title="Nuevo" href="/admin/cliente/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
+      <li class="btn-item"><a title="Nuevo" href="/admin/producto/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
       <li class="btn-item"><a title="Guardar" href="#" class="fa fa-floppy-o" aria-hidden="true" onclick="javascript: $('#modalGuardar').modal('toggle');"><span>Guardar</span></a>
       </li>
       @if($globalId > 0)
@@ -26,7 +26,7 @@
 </ol>
 <script>
       function fsalir(){
-      location.href ="/admin/clientes";
+      location.href ="/admin/productos";
       }
 </script>
 @endsection
@@ -47,32 +47,35 @@
                     <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
                 </div>
                 <div class="form-group col-lg-6">
-                    <label>Apellido: *</label>
-                    <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="" required>
+                    <label>Cantidad: *</label>
+                    <input type="text" id="txtCantidad" name="txtCantidad" class="form-control" value="" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-lg-6">
-                    <label>DNI: *</label>
-                    <input type="text" id="txtDni" name="txtDni" class="form-control" value="" required>
+                    <label>Precio: *</label>
+                    <input type="number" id="txtPrecio" name="txtPrecio" class="form-control" value="" required>
                 </div>
                 <div class="form-group col-lg-6">
-                    <label>Telefono: *</label>
-                    <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="" required>
+                    <label>Imagen: </label>
+                    <input type="file" id="imgProducto" name="imgProducto" class="form-control" accept=".jpg, .jpeg, .png">
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-lg-6">
-                    <label>Correo: *</label>
-                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
-                </div>
-                <div class="form-group col-lg-6">
-                    <label>Clave: *</label>
-                    <input type="text" id="txtClave" name="txtClave" class="form-control" value="" required>
+                <div class="form-group col-lg-12">
+                    <label>Descripción: </label>
+                    <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" rows="3"></textarea>
                 </div>
             </div>
       </form>
 </div>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#txtDescripcion' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 
 
 @endsection

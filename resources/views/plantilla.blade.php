@@ -27,6 +27,7 @@
   <script src="{{ asset('js/localization/messages_es.js') }}"></script>
   <script src="{{ asset('js/funciones_generales.js') }}"></script>
   <script src="{{ asset('js/bootstrap-select.js') }}"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 
 	<script>
 	    function cambiarGrupo() {
