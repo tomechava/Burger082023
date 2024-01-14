@@ -46,6 +46,26 @@
                     <label>Nombre: *</label>
                     <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
                 </div>
+                <div class="form-group col-lg-6">
+                    <label>Apellido: *</label>
+                    <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-lg-6">
+                    <label>Correo: *</label>
+                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Telefono: *</label>
+                    <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-lg-6">
+                    <label>CV: *</label>
+                    <input type="file" id="imgCv" name="imgCv" class="form-control" accept=".docx, .pdf" value="" required>
+                </div>
                 
             </div>
       </form>

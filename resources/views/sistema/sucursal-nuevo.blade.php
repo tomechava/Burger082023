@@ -39,12 +39,34 @@
             }
       ?>
       <form id="form1" method="POST">
-            <div class="row">
+      <div class="row">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                 <div class="form-group col-lg-6">
                     <label>Nombre: *</label>
                     <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Dirección: *</label>
+                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    <label>Telefono: *</label>
+                    <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="" required>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Mapa: *</label>
+                    <input type="text" id="txtMapa" name="txtMapa" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-lg-6">
+                    <label>Estado: *</label>
+                    <select name="lstEstado" id="lstEstado" class="form-control" required>
+                        <option value="" selected disabled>Seleccionar</option>
+                    </select>
                 </div>
                 
             </div>
