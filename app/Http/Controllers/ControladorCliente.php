@@ -1,6 +1,7 @@
 <?php 
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 class ControladorCliente extends Controller {
 
@@ -15,6 +16,10 @@ class ControladorCliente extends Controller {
     {
             $titulo = "Listado de Clientes";
             return view('sistema.cliente-listar', compact('titulo'));
+    }
+
+    public function guardar(Request $request){
+        $titulo = "Modificar Cliente";
     }
 
 
