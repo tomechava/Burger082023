@@ -64,7 +64,7 @@
             <div class="row">
             <div class="form-group col-lg-6">
                     <label>Estado: *</label>
-                    <select name="lstEstado" id="lstEstado" class="form-control" required>
+                    <select name="lstEstadoSucursal" id="lstEstadoSucursal" class="form-control" required>
                         <option value="" selected disabled>Seleccionar</option>
                     </select>
                 </div>
