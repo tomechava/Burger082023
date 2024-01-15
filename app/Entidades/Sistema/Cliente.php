@@ -19,10 +19,10 @@ class Cliente extends Model{
       ];
 
       public function cargarDesdeRequest($request) {
-            $this->idmenu = $request->input('id') != "0" ? $request->input('id') : $this->idcliente;
+            $this->idcliente = $request->input('id') != "0" ? $request->input('id') : $this->idcliente;
             $this->nombre = $request->input('txtNombre');
             $this->apellido = $request->input('txtApellido');
-            $this->correo = $request->input('txtCorreo') != "" ? $request->input('txtOrden') : 0;
+            $this->correo = $request->input('txtCorreo');
             $this->telefono = $request->input('txtTelefono');
             $this->dni = $request->input('txtDni');
             $this->clave = $request->input('txtClave')!= ""? password_hash($request->input('txtClave'), PASSWORD_DEFAULT): "";
@@ -57,7 +57,7 @@ class Cliente extends Model{
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {
-                  $this->idmenu = $lstRetorno[0]->idmenu;
+                  $this->idcliente = $lstRetorno[0]->idcliente;
                   $this->nombre = $lstRetorno[0]->nombre;
                   $this->apellido = $lstRetorno[0]->apellido;
                   $this->correo = $lstRetorno[0]->correo;
