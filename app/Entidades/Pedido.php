@@ -21,24 +21,24 @@ class Pedido extends Model{
       public function cargarDesdeRequest($request) {
             $this->idpedido = $request->input('id') != "0" ? $request->input('id') : $this->idpedido;
             $this->fecha = $request->input('txtFecha');
-            $this->cantidad = $request->input('txtCantidad');
-            $this->precio = $request->input('txtPrecio');
-            $this->descripcion = $request->input('txtDescripcion');
-            $this->imagen = $request->input('imgProducto');
-            $this->fk_idcategoria = $request->input('lstCategoria');
+            $this->total = $request->input('txtTotal');
+            $this->fk_idcliente = $request->input('lstCliente');
+            $this->fk_idsucursal = $request->input('lstSucursal');
+            $this->fk_idestadopedido = $request->input('lstEstadoPedido');
+            $this->metodo_pago = $request->input('lstMetodoPago');
       }
 
       public function obtenerTodos()
       {
             $sql = "SELECT
                   idpedido,
-                  nombre,
-                  cantidad,
-                  precio,
-                  descripcion,
-                  imagen,
-                  fk_idcategoria,
-                  FROM pedidos ORDER BY nombre";
+                  fecha,
+                  total,
+                  fk_idcliente,
+                  fk_idsucursal,
+                  fk_idestadopedido,
+                  metodo_pago,
+                  FROM pedidos ORDER BY fecha";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
       }
@@ -47,23 +47,23 @@ class Pedido extends Model{
       {
             $sql = "SELECT
                   idpedido,
-                  nombre,
-                  cantidad,
-                  precio,
-                  descripcion,
-                  imagen,
-                  fk_idcategoria,
+                  fecha,
+                  total,
+                  fk_idcliente,
+                  fk_idsucursal,
+                  fk_idestadopedido,
+                  metodo_pago,
                   FROM pedidos WHERE idpedido == $idPedido";
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {
                   $this->idpedido = $lstRetorno[0]->idpedido;
-                  $this->nombre = $lstRetorno[0]->nombre;
-                  $this->cantidad = $lstRetorno[0]->cantidad;
-                  $this->precio = $lstRetorno[0]->precio;
-                  $this->descripcion = $lstRetorno[0]->descripcion;
-                  $this->imagen = $lstRetorno[0]->imagen;
-                  $this->fk_idcategoria = $lstRetorno[0]->fk_idcategoria;
+                  $this->fecha = $lstRetorno[0]->fecha;
+                  $this->total = $lstRetorno[0]->total;
+                  $this->fk_idcliente = $lstRetorno[0]->fk_idcliente;
+                  $this->fk_idsucursal = $lstRetorno[0]->fk_idsucursal;
+                  $this->fk_idestadopedido = $lstRetorno[0]->fk_idestadopedido;
+                  $this->metodo_pago = $lstRetorno[0]->metodo_pago;
                   return $this;
               }
               return null;
@@ -73,27 +73,29 @@ class Pedido extends Model{
 
             $sql = "UPDATE pedidos SET
                   nombre='?',
-                  cantidad='?',
-                  precio='?',
-                  descripcion='?',
-                  imagen='?',
-                  fk_idcategoria='?',
+                  fecha='?',
+                  total='?',
+                  fk_idcliente='?',
+                  fk_idsucursal='?',
+                  fk_idestadopedido='?',
+                  metodo_pago='?',
                   WHERE idpedido=?";
             $affected = DB::update($sql, [
                   $this->nombre,
-                  $this->cantidad,
-                  $this->precio,
-                  $this->descripcion,
-                  $this->imagen,
-                  $this->fk_idcategoria,
+                  $this->fecha,
+                  $this->total,
+                  $this->fk_idcliente,
+                  $this->fk_idsucursal,
+                  $this->fk_idestadopedido,
+                  $this->metodo_pago,
                   $this->idpedido]);
 
       }
 
       public function eliminar()
       {
-            $sql = "DELETE FROM pedidos WHERE
-            idpedido=?";
+            $sql = "DELETE FROM pedidos WHERE 
+                  idpedido=?";
             $affected = DB::delete($sql, [$this->idpedido]);
       }
 
@@ -101,19 +103,21 @@ class Pedido extends Model{
       {
             $sql = "INSERT INTO pedidos (
                   nombre,
-                  cantidad,
-                  precio,
-                  descripcion,
-                  imagen,
-                  fk_idcategoria
+                  fecha,
+                  total,
+                  fk_idcliente,
+                  fk_idsucursal,
+                  fk_idestadopedido,
+                  metodo_pago,
                   ) VALUES (?, ?, ?, ?, ?, ?, ?);";
             $result = DB::insert($sql, [
                   $this->nombre,
-                  $this->cantidad,
-                  $this->precio,
-                  $this->descripcion,
-                  $this->imagen,
-                  $this->fk_idcategoria,
+                  $this->fecha,
+                  $this->total,
+                  $this->fk_idcliente,
+                  $this->fk_idsucursal,
+                  $this->fk_idestadopedido,
+                  $this->metodo_pago,
             ]);
             return $this->idpedido = DB::getPdo()->lastInsertId();
       }
