@@ -106,7 +106,7 @@ class Pedido extends Model{
                   descripcion,
                   imagen,
                   fk_idcategoria
-                  ) VALUES (?, ?, ?, ?, ?, ?);";
+                  ) VALUES (?, ?, ?, ?, ?, ?, ?);";
             $result = DB::insert($sql, [
                   $this->nombre,
                   $this->cantidad,

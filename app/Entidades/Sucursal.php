@@ -99,7 +99,7 @@ class Sucursal extends Model{
                   telefono,
                   mapa,
                   fk_idestadosucursal
-                  ) VALUES (?, ?, ?, ?, ?, ?);";
+                  ) VALUES (?, ?, ?, ?, ?);";
             $result = DB::insert($sql, [
                   $this->nombre,
                   $this->direccion,
