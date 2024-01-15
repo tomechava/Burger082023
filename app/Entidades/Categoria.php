@@ -28,7 +28,7 @@ class Categoria extends Model{
       {
             $sql = "SELECT
                   idcategoria,
-                  nombre,
+                  nombre
                   FROM categorias ORDER BY nombre";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -38,7 +38,7 @@ class Categoria extends Model{
       {
             $sql = "SELECT
                   idsucursal,
-                  nombre,
+                  nombre
                   FROM categorias WHERE idcategoria == $idCategoria";
             $lstRetorno = DB::select($sql);
             
@@ -53,7 +53,7 @@ class Categoria extends Model{
       public function guardar() {
 
             $sql = "UPDATE categorias SET
-                  nombre='?',
+                  nombre='?'
                   WHERE idcategoria=?";
             $affected = DB::update($sql, [
                   $this->nombre,
@@ -71,7 +71,7 @@ class Categoria extends Model{
       public function insertar()
       {
             $sql = "INSERT INTO categorias (
-                  nombre,
+                  nombre
                   ) VALUES (?, ?);";
             $result = DB::insert($sql, [
                   $this->nombre,

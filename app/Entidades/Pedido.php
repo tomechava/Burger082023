@@ -37,7 +37,7 @@ class Pedido extends Model{
                   fk_idcliente,
                   fk_idsucursal,
                   fk_idestadopedido,
-                  metodo_pago,
+                  metodo_pago
                   FROM pedidos ORDER BY fecha";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -52,7 +52,7 @@ class Pedido extends Model{
                   fk_idcliente,
                   fk_idsucursal,
                   fk_idestadopedido,
-                  metodo_pago,
+                  metodo_pago
                   FROM pedidos WHERE idpedido == $idPedido";
             $lstRetorno = DB::select($sql);
             
@@ -78,7 +78,7 @@ class Pedido extends Model{
                   fk_idcliente='?',
                   fk_idsucursal='?',
                   fk_idestadopedido='?',
-                  metodo_pago='?',
+                  metodo_pago='?'
                   WHERE idpedido=?";
             $affected = DB::update($sql, [
                   $this->nombre,
@@ -108,7 +108,7 @@ class Pedido extends Model{
                   fk_idcliente,
                   fk_idsucursal,
                   fk_idestadopedido,
-                  metodo_pago,
+                  metodo_pago
                   ) VALUES (?, ?, ?, ?, ?, ?, ?);";
             $result = DB::insert($sql, [
                   $this->nombre,

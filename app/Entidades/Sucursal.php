@@ -35,7 +35,7 @@ class Sucursal extends Model{
                   direccion,
                   telefono,
                   mapa,
-                  fk_idestadosucursal,
+                  fk_idestadosucursal
                   FROM sucursales ORDER BY nombre";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -49,7 +49,7 @@ class Sucursal extends Model{
                   direccion,
                   telefono,
                   mapa,
-                  fk_idestadosucursal,
+                  fk_idestadosucursal
                   FROM sucursales WHERE idsucursal == $idSucursal";
             $lstRetorno = DB::select($sql);
             
@@ -72,7 +72,7 @@ class Sucursal extends Model{
                   direccion='?',
                   telefono='?',
                   mapa='?',
-                  fk_idestadosucursal='?',
+                  fk_idestadosucursal='?'
                   WHERE idsucursal=?";
             $affected = DB::update($sql, [
                   $this->nombre,

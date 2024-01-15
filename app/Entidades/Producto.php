@@ -37,7 +37,7 @@ class Producto extends Model{
                   precio,
                   descripcion,
                   imagen,
-                  fk_idcategoria,
+                  fk_idcategoria
                   FROM productos ORDER BY nombre";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -52,7 +52,7 @@ class Producto extends Model{
                   precio,
                   descripcion,
                   imagen,
-                  fk_idcategoria,
+                  fk_idcategoria
                   FROM productos WHERE idproducto == $idProducto";
             $lstRetorno = DB::select($sql);
             
@@ -77,7 +77,7 @@ class Producto extends Model{
                   precio='?',
                   descripcion='?',
                   imagen='?',
-                  fk_idcategoria='?',
+                  fk_idcategoria='?'
                   WHERE idproducto=?";
             $affected = DB::update($sql, [
                   $this->nombre,

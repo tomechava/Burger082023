@@ -37,7 +37,7 @@ class Postulacion extends Model{
                   telefono,
                   direccion,
                   correo,
-                  curriculum,
+                  curriculum
                   FROM postulaciones ORDER BY nombre";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -52,7 +52,7 @@ class Postulacion extends Model{
                   telefono,
                   direccion,
                   correo,
-                  curriculum,
+                  curriculum
                   FROM postulaciones WHERE idpostulacion == $idPostulacion";
             $lstRetorno = DB::select($sql);
             
@@ -77,7 +77,7 @@ class Postulacion extends Model{
                   telefono='?',
                   direccion='?',
                   correo='?',
-                  curriculum='?',
+                  curriculum='?'
                   WHERE idpostulacion=?";
             $affected = DB::update($sql, [
                   $this->nombre,

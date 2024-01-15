@@ -37,7 +37,7 @@ class Cliente extends Model{
                   correo,
                   telefono,
                   dni,
-                  clave,
+                  clave
                   FROM clientes ORDER BY nombre";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -52,7 +52,7 @@ class Cliente extends Model{
                   correo,
                   telefono,
                   dni,
-                  clave,
+                  clave
                   FROM clientes WHERE idcliente == $idCliente";
             $lstRetorno = DB::select($sql);
             
@@ -78,7 +78,7 @@ class Cliente extends Model{
                         correo='?',
                         telefono='?',
                         dni='?',
-                        clave='?',
+                        clave='?'
                         WHERE idcliente=?";
                   $affected = DB::update($sql, [
                         $this->nombre,
