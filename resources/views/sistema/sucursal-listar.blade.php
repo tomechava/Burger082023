@@ -19,7 +19,7 @@
 @section('contenido')
 <?php
 
-use App\Http\Sistema\Entidades\Sucursal;
+use App\Entidades\Sistema\Sucursal;
 $entidad = new Sucursal();
 $aSucursales = $entidad->obtenerTodos();
 

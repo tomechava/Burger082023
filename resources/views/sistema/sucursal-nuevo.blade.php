@@ -31,6 +31,9 @@
 </script>
 @endsection
 @section('contenido')
+<?php
+use App\Entidades\Sistema\Estado;
+?>
 <div class="panel-body">
       <div id = "msg"></div>
       <?php
