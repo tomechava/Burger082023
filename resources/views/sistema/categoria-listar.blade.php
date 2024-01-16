@@ -35,7 +35,7 @@ if (isset($msg)) {
         </tr>
     </thead>
     <tbody>
-        @foreach($categorias as $categoria)
+        @foreach($aCategorias as $categoria)
         <tr>
             <td>{{$categoria->nombre}}</td>
         </tr>

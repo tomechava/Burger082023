@@ -40,7 +40,7 @@ if (isset($msg)) {
         @foreach ($aProductos as $item)
         <tr>
             <td><a href="">{{$item->nombre}}</a></td>
-            <td>{{$item->categoria}}</td>
+            <td>{{$item->fk_idcategoria}}</td>
             <td>{{$item->precio}}</td>
         </tr>
         @endforeach

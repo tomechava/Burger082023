@@ -31,6 +31,11 @@
 </script>
 @endsection
 @section('contenido')
+<?php
+use App\Entidades\Sistema\Categoria;
+$categoria = new Categoria();
+$aCategorias = $categoria->obtenerTodos();
+?>
 <div class="panel-body">
       <div id = "msg"></div>
       <?php
@@ -60,6 +65,9 @@
                     <label>Categoría: *</label>
                     <select name="lstCategoria" id="lstCategoria" class="form-control">
                         <option value="" selected disabled>Seleccionar</option>
+                        @foreach ($aCategorias as $categoria)
+                        <option value="{{$categoria->idcategoria}}">{{$categoria->nombre}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

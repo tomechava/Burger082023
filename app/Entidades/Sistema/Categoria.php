@@ -72,7 +72,7 @@ class Categoria extends Model{
       {
             $sql = "INSERT INTO categorias (
                   nombre
-                  ) VALUES (?, ?);";
+                  ) VALUES (?);";
             $result = DB::insert($sql, [
                   $this->nombre,
             ]);

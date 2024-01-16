@@ -63,8 +63,12 @@
             </div>
             <div class="row">
             <div class="form-group col-lg-6">
+                    <label>Direccion: *</label>
+                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="" required>
+            </div>
+            <div class="form-group col-lg-6">
                     <label>CV: *</label>
-                    <input type="file" id="imgCurriculum" name="imgCurriculum" class="form-control" accept=".docx, .pdf" value="" required>
+                    <input type="file" id="imgCurriculum" name="imgCurriculum" class="form-control" accept=".docx, .pdf" required>
                 </div>
                 
             </div>
