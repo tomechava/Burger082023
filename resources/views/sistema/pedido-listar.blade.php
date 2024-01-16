@@ -17,6 +17,11 @@
 @endsection
 @section('contenido')
 <?php
+
+use App\Http\Sistema\Entidades\Pedido;
+$entidad = new Pedido();
+$aPedidos = $entidad->obtenerTodos();
+
 if (isset($msg)) {
     echo '<div id = "msg"></div>';
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
@@ -34,5 +39,18 @@ if (isset($msg)) {
             <th>Total</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach($pedidos as $pedido)
+        <tr>
+            <td><a href=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+            <td>{{$pedido->idpedido}}</td>
+            <td>{{$pedido->sucursal->nombre}}</td>
+            <td>{{$pedido->cliente->nombre}}</td>
+            <td>{{$pedido->cliente->celular}}</td>
+            <td>{{$pedido->fecha}}</td>
+            <td>{{$pedido->total}}</td>
+        </tr>
+        @endforeach
+    </tbody>
 </table> 
 @endsection

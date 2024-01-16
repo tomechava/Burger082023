@@ -18,6 +18,11 @@
 @endsection
 @section('contenido')
 <?php
+
+use App\Http\Sistema\Entidades\Sucursal;
+$entidad = new Sucursal();
+$aSucursales = $entidad->obtenerTodos();
+
 if (isset($msg)) {
     echo '<div id = "msg"></div>';
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
@@ -33,5 +38,16 @@ if (isset($msg)) {
             <th>Estado</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach ($aSucursales as $sucursal)
+        <tr>
+            <td><a href="">{{ $sucursal->nombre }}</a></td>
+            <td>{{ $sucursal->direccion }}</td>
+            <td>{{ $sucursal->telefono }}</td>
+            <td><a href="{{ $sucursal->mapa }}" target="_blank">Ver mapa</a></td>
+            <td>{{ $sucursal->estado }}</td>
+        </tr>
+        @endforeach
+    </tbody>
 </table> 
 @endsection

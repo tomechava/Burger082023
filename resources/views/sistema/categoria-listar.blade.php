@@ -18,6 +18,11 @@
 @endsection
 @section('contenido')
 <?php
+
+use App\Entidades\Sistema\Categoria;
+$entidad = new Categoria();
+$aCategorias = $entidad->obtenerTodos();
+
 if (isset($msg)) {
     echo '<div id = "msg"></div>';
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
@@ -29,5 +34,12 @@ if (isset($msg)) {
             <th>Nombre</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach($categorias as $categoria)
+        <tr>
+            <td>{{$categoria->nombre}}</td>
+        </tr>
+        @endforeach
+    </tbody>
 </table> 
 @endsection

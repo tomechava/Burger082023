@@ -38,7 +38,7 @@ if (isset($msg)) {
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($aClientes as $cliente): ?>
+        @foreach ($aClientes as $cliente)
             <tr>
                 <td>{{ $cliente->nombre }}</td>
                 <td>{{ $cliente->apellido }}</td>
@@ -46,7 +46,7 @@ if (isset($msg)) {
                 <td>{{ $cliente->dni }}</td>
                 <td>{{ $cliente->telefono }}</td>
             </tr>
-        <?php endforeach; ?>
+        @endforeach
     </tbody>
 </table> 
 @endsection

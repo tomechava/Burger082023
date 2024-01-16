@@ -18,6 +18,11 @@
 @endsection
 @section('contenido')
 <?php
+
+use App\Http\Sistema\Entidades\Postulacion;
+$entidad = new Postulacion();
+$aPostulaciones = $entidad->obtenerTodos();
+
 if (isset($msg)) {
     echo '<div id = "msg"></div>';
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
@@ -34,5 +39,17 @@ if (isset($msg)) {
             <th>Descargar CV</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach ($aPostulaciones as $postulacion)
+        <tr>
+            <td><a href=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+            <td>{{$postulacion->nombre}}</td>
+            <td>{{$postulacion->apellido}}</td>
+            <td>{{$postulacion->whatsapp}}</td>
+            <td>{{$postulacion->correo}}</td>
+            <td><a href=""><i class="fa fa-download" aria-hidden="true"></i></a></td>
+        </tr>
+        @endforeach
+    </tbody>
 </table> 
 @endsection
