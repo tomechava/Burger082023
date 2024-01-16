@@ -40,13 +40,13 @@ if (isset($msg)) {
         </tr>
     </thead>
     <tbody>
-        @foreach($pedidos as $pedido)
+        @foreach($aPedidos as $pedido)
         <tr>
             <td><a href=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
             <td>{{$pedido->idpedido}}</td>
-            <td>{{$pedido->sucursal->nombre}}</td>
-            <td>{{$pedido->cliente->nombre}}</td>
-            <td>{{$pedido->cliente->celular}}</td>
+            <td>{{$pedido->fk_idsucursal}}</td>
+            <td>{{$pedido->fk_idcliente}}</td>
+            <td>{{$pedido->fk_idcliente}}</td>
             <td>{{$pedido->fecha}}</td>
             <td>{{$pedido->total}}</td>
         </tr>
