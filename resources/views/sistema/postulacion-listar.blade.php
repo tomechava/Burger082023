@@ -19,7 +19,7 @@
 @section('contenido')
 <?php
 
-use App\Http\Sistema\Entidades\Postulacion;
+use App\Entidades\Sistema\Postulacion;
 $entidad = new Postulacion();
 $aPostulaciones = $entidad->obtenerTodos();
 

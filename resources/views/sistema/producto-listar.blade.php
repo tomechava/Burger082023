@@ -18,6 +18,11 @@
 @endsection
 @section('contenido')
 <?php
+
+use App\Entidades\Sistema\Producto;
+$entidad = new Producto();
+$aProductos = $entidad->obtenerTodos();
+
 if (isset($msg)) {
     echo '<div id = "msg"></div>';
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
@@ -31,5 +36,14 @@ if (isset($msg)) {
             <th>Precio</th>
         </tr>
     </thead>
+    <tbody>
+        @foreach ($aProductos as $item)
+        <tr>
+            <td><a href="">{{$item->nombre}}</a></td>
+            <td>{{$item->categoria}}</td>
+            <td>{{$item->precio}}</td>
+        </tr>
+        @endforeach
+    </tbody>
 </table> 
 @endsection

@@ -18,7 +18,7 @@
 @section('contenido')
 <?php
 
-use App\Http\Sistema\Entidades\Pedido;
+use App\Entidades\Sistema\Pedido;
 $entidad = new Pedido();
 $aPedidos = $entidad->obtenerTodos();
 
