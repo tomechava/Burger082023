@@ -138,3 +138,10 @@ Route::post('/admin/sucursal/nuevo', 'ControladorSucursal@guardar');
 Route::get('/admin/categorias', 'ControladorCategoria@index');
 Route::get('/admin/categoria/nuevo', 'ControladorCategoria@nuevo');
 Route::post('/admin/categoria/nuevo', 'ControladorCategoria@guardar');
+
+/* --------------------------------------------- */
+/* CONTROLADOR ESTADOS SUCURSALES                         */
+/* --------------------------------------------- */
+Route::get('/admin/sucursales/estados', 'ControladorEstadoSucursal@index');
+Route::get('/admin/sucursal/estado/nuevo', 'ControladorEstadoSucursal@nuevo');
+Route::post('/admin/sucursal/estado/nuevo', 'ControladorEstadoSucursal@guardar');
