@@ -36,7 +36,7 @@ class ControladorCliente extends Controller {
                 $cliente = new Cliente();
                 $cliente->obtenerPorId($entidad->idcliente);
         
-                return view('sistema.menu-nuevo', compact('idcliente', 'nombre', 'apellido', 'correo', 'telefono', 'dni', 'clave')) . '?id=' . $entidad->idcliente;
+                return view('sistema.cliente-nuevo', compact('idcliente', 'nombre', 'apellido', 'correo', 'telefono', 'dni', 'clave')) . '?id=' . $entidad->idcliente;
         
             } else {
                 if ($_POST["id"] > 0) {
