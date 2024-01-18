@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Entidades\Sistema\EstadoSucursal;
 require app_path() . '/start/constants.php';
 
-class ControladorCategoria extends Controller {
+class ControladorEstadoSucursal extends Controller {
 
       public function nuevo()
     {
