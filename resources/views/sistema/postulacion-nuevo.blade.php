@@ -4,8 +4,8 @@
 
 @section('scripts')
 <script>
-      globalId = '';
-      <?php $globalId = "";?>
+    globalId = '';
+    <?php $globalId = "";?>
 </script>
 @endsection
 
@@ -20,7 +20,7 @@
       <li class="btn-item"><a title="Guardar" href="#" class="fa fa-floppy-o" aria-hidden="true" onclick="javascript: $('#modalGuardar').modal('toggle');"><span>Guardar</span></a>
       </li>
       @if($globalId > 0)
-      <li class="btn-item"><a title="Guardar" href="#" class="fa fa-trash-o" aria-hidden="true" onclick="javascript: $('#mdlEliminar').modal('toggle');"><span>Eliminar</span></a></li>
+            <li class="btn-item"><a title="Guardar" href="#" class="fa fa-trash-o" aria-hidden="true" onclick="javascript: $('#mdlEliminar').modal('toggle');"><span>Eliminar</span></a></li>
       @endif
       <li class="btn-item"><a title="Salir" href="#" class="fa fa-arrow-circle-o-left" aria-hidden="true" onclick="javascript: $('#modalSalir').modal('toggle');"><span>Salir</span></a></li>
 </ol>
@@ -38,7 +38,7 @@
             echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
             }
       ?>
-      <form id="form1" method="POST">
+        <form id="form1" method="POST">
             <div class="row">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
@@ -52,30 +52,30 @@
                 </div>
             </div>
             <div class="row">
-            <div class="form-group col-lg-6">
-                    <label>Correo: *</label>
-                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
-                </div>
                 <div class="form-group col-lg-6">
                     <label>Telefono: *</label>
                     <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="" required>
                 </div>
+                <div class="form-group col-lg-6">
+                    <label>Dirección: *</label>
+                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="" required>
+                </div>
             </div>
             <div class="row">
-            <div class="form-group col-lg-6">
-                    <label>Direccion: *</label>
-                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="" required>
-            </div>
-            <div class="form-group col-lg-6">
-                    <label>CV: *</label>
-                    <input type="file" id="imgCurriculum" name="imgCurriculum" class="form-control" accept=".docx, .pdf" required>
-                </div>
+                  <div class="form-group col-lg-6">
+                        <label>Correo: *</label>
+                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
+                  </div>
+                  <div class="form-group col-lg-16">
+                        <label>Curriculum Vitae: *</label>
+                        <input type="file" id="txtCurriculum" name="txtCurriculum" class="form-control" value="" required>
+                  </div>
                 
             </div>
       </form>
 </div>
 <script>
-      function guardar() {
+    function guardar() {
         if ($("#form1").valid()) {
             modificado = false;
             form1.submit();

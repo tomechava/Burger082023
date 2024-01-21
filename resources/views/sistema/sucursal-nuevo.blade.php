@@ -4,8 +4,8 @@
 
 @section('scripts')
 <script>
-      globalId = '';
-      <?php $globalId = "";?>
+    globalId = '';
+    <?php $globalId = "";?>
 </script>
 @endsection
 
@@ -32,7 +32,9 @@
 @endsection
 @section('contenido')
 <?php
-use App\Entidades\Sistema\Estado;
+use App\Entidades\Sistema\EstadoSucursal;
+$entidad = new EstadoSucursal();
+$aEstadoSucursal = $entidad->obtenerTodos();
 ?>
 <div class="panel-body">
       <div id = "msg"></div>
@@ -41,8 +43,8 @@ use App\Entidades\Sistema\Estado;
             echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
             }
       ?>
-      <form id="form1" method="POST">
-      <div class="row">
+        <form id="form1" method="POST">
+            <div class="row">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                 <div class="form-group col-lg-6">
@@ -69,6 +71,9 @@ use App\Entidades\Sistema\Estado;
                     <label>Estado: *</label>
                     <select name="lstEstadoSucursal" id="lstEstadoSucursal" class="form-control" required>
                         <option value="" selected disabled>Seleccionar</option>
+                        @foreach ($aEstadoSucursal as $estadoSucursal)
+                        <option value="{{$estadoSucursal->idestadosucursal}}">{{$estadoSucursal->nombre}}</option>
+                        @endforeach
                     </select>
                 </div>
                 

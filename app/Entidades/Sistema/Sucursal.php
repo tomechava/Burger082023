@@ -81,7 +81,6 @@ class Sucursal extends Model{
                   $this->mapa,
                   $this->fk_idestadosucursal,
                   $this->idsucursal]);
-
       }
 
       public function eliminar()

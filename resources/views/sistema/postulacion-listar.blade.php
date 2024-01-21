@@ -31,25 +31,25 @@ if (isset($msg)) {
 <table id="grilla" class="display">
     <thead>
         <tr>
-            <th>Ver postulación</th>
+            <th>Ver postulacion</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Whatsapp</th>
+            <th>Telefono</th>
             <th>Correo</th>
             <th>Descargar CV</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($aPostulaciones as $postulacion)
-        <tr>
-            <td><a href=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-            <td>{{$postulacion->nombre}}</td>
-            <td>{{$postulacion->apellido}}</td>
-            <td>{{$postulacion->whatsapp}}</td>
-            <td>{{$postulacion->correo}}</td>
-            <td><a href=""><i class="fa fa-download" aria-hidden="true"></i></a></td>
-        </tr>
-        @endforeach
+        @foreach ($aPostulaciones as $item)
+            <tr>
+                  <td><a href=""><i class="fa fa-eye"></i></a></td>
+                  <td>{{$item->nombre}}</td>
+                  <td>{{$item->apellido}}</td>
+                  <td>{{$item->telefono}}</td>
+                  <td>{{$item->correo}}</td>
+                  <td><a href=""><i class="fa fa-download"></i></a></td>
+            </tr>
+      @endforeach
     </tbody>
 </table> 
 @endsection

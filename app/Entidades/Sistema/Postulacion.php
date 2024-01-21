@@ -25,7 +25,7 @@ class Postulacion extends Model{
             $this->telefono = $request->input('txtTelefono');
             $this->direccion = $request->input('txtDireccion');
             $this->correo = $request->input('txtCorreo');
-            $this->curriculum = $request->input('imgCurriculum');
+            $this->curriculum = $request->input('txtCurriculum');
       }
 
       public function obtenerTodos()
@@ -77,7 +77,7 @@ class Postulacion extends Model{
                   telefono='?',
                   direccion='?',
                   correo='?',
-                  curriculum='?'
+                  curriculum='?',
                   WHERE idpostulacion=?";
             $affected = DB::update($sql, [
                   $this->nombre,
@@ -87,13 +87,13 @@ class Postulacion extends Model{
                   $this->correo,
                   $this->curriculum,
                   $this->idpostulacion]);
-
+            
       }
 
       public function eliminar()
       {
-            $sql = "DELETE FROM postulaciones WHERE
-            idpostulacion=?";
+            $sql = "DELETE FROM postulaciones WHERE 
+                  idpostulacion=?";
             $affected = DB::delete($sql, [$this->idpostulacion]);
       }
 
@@ -115,6 +115,7 @@ class Postulacion extends Model{
                   $this->correo,
                   $this->curriculum,
             ]);
+
             return $this->idpostulacion = DB::getPdo()->lastInsertId();
       }
     

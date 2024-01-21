@@ -9,14 +9,14 @@ class ControladorPostulacion extends Controller {
 
       public function nuevo()
     {
-        $titulo = "Nueva Postulacion";
+        $titulo = "Nueva postulacion";
         return view('sistema.postulacion-nuevo', compact('titulo'));
 
     }
 
     public function index()
     {
-            $titulo = "Listado de Postulaciones";
+            $titulo = "Listado de postulaciones";
             return view('sistema.postulacion-listar', compact('titulo'));
     }
 
@@ -24,7 +24,7 @@ class ControladorPostulacion extends Controller {
         
         try {
             //Define la entidad servicio
-            $titulo = "Modificar Postulacion";
+            $titulo = "Modificar postulacion";
             $entidad = new Postulacion();
             $entidad->cargarDesdeRequest($request);
 
@@ -33,8 +33,8 @@ class ControladorPostulacion extends Controller {
                 $msg["ESTADO"] = MSG_ERROR;
                 $msg["MSG"] = "Complete todos los datos";
 
-                $postulacion = new Producto();
-                $postulacion->obtenerPorId($entidad->idpostulacion);
+                $sucursal = new Producto();
+                $sucursal->obtenerPorId($entidad->idsucursal);
         
                 return view('sistema.postulacion-nuevo', compact('idpostulacion', 'nombre', 'apellido', 'telefono', 'direccion', 'correo', 'curriculum')) . '?id=' . $entidad->idpostulacion;
         
@@ -54,7 +54,7 @@ class ControladorPostulacion extends Controller {
                 }
                 
                 $_POST["id"] = $entidad->idpostulacion;
-                $titulo = "Listado de Postulaciones";
+                $titulo = "Listado de postulaciones";
                 return view('sistema.postulacion-listar', compact('titulo', 'msg'));
             }
         } catch (Exception $e) {
@@ -63,6 +63,7 @@ class ControladorPostulacion extends Controller {
         }
 
     }
+
 }
 
 
