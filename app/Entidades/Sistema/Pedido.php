@@ -139,7 +139,7 @@ class Pedido extends Model{
       }
 
       public function obtenerFiltrado()
-    {
+      {
         $request = $_REQUEST;
         $columns = array(
             0 => 'A.idpedido',
@@ -153,10 +153,10 @@ class Pedido extends Model{
         $sql = "SELECT DISTINCT
                   A.idpedido,
                   A.idpedido,
-                  B.nombre,
-                  B.telefono,
+                  B.nombre as nombreCliente,
+                  B.telefono as telefonoCliente,
                   A.fecha,
-                  C.nombre,
+                  C.nombre as nombreSucursal,
                   A.total
                   FROM pedidos A
                   INNER JOIN clientes B ON A.fk_idcliente = B.idcliente

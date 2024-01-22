@@ -39,17 +39,17 @@ if (isset($msg)) {
             <th>Descargar CV</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach ($aPostulaciones as $item)
-            <tr>
-                  <td><a href=""><i class="fa fa-eye"></i></a></td>
-                  <td>{{$item->nombre}}</td>
-                  <td>{{$item->apellido}}</td>
-                  <td>{{$item->telefono}}</td>
-                  <td>{{$item->correo}}</td>
-                  <td><a href=""><i class="fa fa-download"></i></a></td>
-            </tr>
-      @endforeach
-    </tbody>
-</table> 
+</table>
+<script>
+	var dataTable = $('#grilla').DataTable({
+	    "processing": true,
+        "serverSide": true,
+	    "bFilter": true,
+	    "bInfo": true,
+	    "bSearchable": true,
+        "pageLength": 25,
+        "order": [[ 0, "asc" ]],
+	    "ajax": "{{ route('postulacion.cargarGrilla') }}"
+	});
+</script>
 @endsection
