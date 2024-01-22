@@ -18,11 +18,6 @@
 @endsection
 @section('contenido')
 <?php
-
-use App\Entidades\Sistema\Producto;
-$entidad = new Producto();
-$aProductos = $entidad->obtenerTodos();
-
 if (isset($msg)) {
     echo '<div id = "msg"></div>';
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
@@ -31,19 +26,23 @@ if (isset($msg)) {
 <table id="grilla" class="display">
     <thead>
         <tr>
+            <th></th>
             <th>Nombre</th>
             <th>Categoría</th>
             <th>Precio</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach ($aProductos as $item)
-        <tr>
-            <td><a href="">{{$item->nombre}}</a></td>
-            <td>{{$item->fk_idcategoria}}</td>
-            <td>{{$item->precio}}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table> 
+</table>
+<script>
+	var dataTable = $('#grilla').DataTable({
+	    "processing": true,
+        "serverSide": true,
+	    "bFilter": true,
+	    "bInfo": true,
+	    "bSearchable": true,
+        "pageLength": 25,
+        "order": [[ 0, "asc" ]],
+	    "ajax": "{{ route('producto.cargarGrilla') }}"
+	});
+</script>
 @endsection

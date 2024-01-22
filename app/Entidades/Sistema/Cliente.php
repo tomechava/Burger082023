@@ -134,7 +134,44 @@ class Cliente extends Model{
             ]);
             return $this->idcliente = DB::getPdo()->lastInsertId();
       }
-    
+
+      public function obtenerFiltrado()
+    {
+        $request = $_REQUEST;
+        $columns = array(
+            0 => 'A.idcliente',
+            1 => 'A.nombre',
+            2 => 'A.apellido',
+            3 => 'A.dni',
+            4 => 'A.correo',
+            5 => 'A.telefono'
+            );
+        $sql = "SELECT DISTINCT
+                    A.idcliente,
+                    A.nombre,
+                    A.apellido,
+                    A.correo,
+                    A.telefono,
+                    A.dni
+                    FROM clientes A
+                WHERE 1=1
+                ";
+
+        //Realiza el filtrado
+        if (!empty($request['search']['value'])) {
+            $sql .= " AND ( A.nombre LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR A.apellido LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR A.correo LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " OR A.telefono LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " OR A.dni LIKE '%" . $request['search']['value'] . "%' )";
+        }
+        $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
+
+        $lstRetorno = DB::select($sql);
+
+        return $lstRetorno;
+    }
+      
 
 
 }
