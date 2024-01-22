@@ -65,8 +65,8 @@ $aCategorias = $categoria->obtenerTodos();
                     <label>Categoría: *</label>
                     <select name="lstCategoria" id="lstCategoria" class="form-control">
                         <option value="" selected disabled>Seleccionar</option>
-                        @foreach ($aCategorias as $categoria)
-                        <option value="{{$categoria->idcategoria}}">{{$categoria->nombre}}</option>
+                        @foreach ($aCategorias as $item)
+                            <option value="{{$item->idcategoria}}">{{$item->nombre}}</option>
                         @endforeach
                     </select>
                 </div>

@@ -37,9 +37,9 @@ class Categoria extends Model{
       public function obtenerPorId($idCategoria)
       {
             $sql = "SELECT
-                  idsucursal,
+                  idcategoria,
                   nombre
-                  FROM categorias WHERE idcategoria == $idCategoria";
+                  FROM categorias WHERE idcategoria = $idCategoria";
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {
