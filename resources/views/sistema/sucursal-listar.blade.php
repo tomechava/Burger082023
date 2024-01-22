@@ -38,16 +38,17 @@ if (isset($msg)) {
             <th>Estado</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach ($aSucursales as $sucursal)
-        <tr>
-            <td><a href="">{{ $sucursal->nombre }}</a></td>
-            <td>{{ $sucursal->direccion }}</td>
-            <td>{{ $sucursal->telefono }}</td>
-            <td><a href="{{ $sucursal->mapa }}" target="_blank">Ver mapa</a></td>
-            <td>{{ $sucursal->estado }}</td>
-        </tr>
-        @endforeach
-    </tbody>
 </table> 
+<script>
+	var dataTable = $('#grilla').DataTable({
+	    "processing": true,
+        "serverSide": true,
+	    "bFilter": true,
+	    "bInfo": true,
+	    "bSearchable": true,
+        "pageLength": 25,
+        "order": [[ 0, "asc" ]],
+	    "ajax": "{{ route('sucursal.cargarGrilla') }}"
+	});
+</script>
 @endsection

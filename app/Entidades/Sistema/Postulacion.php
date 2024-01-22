@@ -155,7 +155,7 @@ class Postulacion extends Model{
         $lstRetorno = DB::select($sql);
 
         return $lstRetorno;
-    }
+      }
 
 
 }

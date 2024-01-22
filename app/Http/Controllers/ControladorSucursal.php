@@ -64,6 +64,41 @@ class ControladorSucursal extends Controller {
 
     }
 
+    public function cargarGrilla()
+    {
+        $request = $_REQUEST;
+
+        $entidad = new Sucursal();
+        $aSucursales = $entidad->obtenerFiltrado();
+
+        $data = array();
+        $cont = 0;
+
+        $inicio = $request['start'];
+        $registros_por_pagina = $request['length'];
+
+
+        for ($i = $inicio; $i < count($aSucursales) && $cont < $registros_por_pagina; $i++) {
+            $row = array();
+            $row[] = '<a href="/admin/sucursal/' . $aSucursales[$i]->idsucursal . '" class="btn btn-secondary">Editar</a>';
+            $row[] = $aSucursales[$i]->nombre;
+            $row[] = $aSucursales[$i]->direccion;
+            $row[] = $aSucursales[$i]->telefono;
+            $row[] = $aSucursales[$i]->mapa;
+            $row[] = $aSucursales[$i]->nombreEstado;
+            $cont++;
+            $data[] = $row;
+        }
+
+        $json_data = array(
+            "draw" => intval($request['draw']),
+            "recordsTotal" => count($aSucursales), //cantidad total de registros sin paginar
+            "recordsFiltered" => count($aSucursales), //cantidad total de registros en la paginacion
+            "data" => $data,
+        );
+        return json_encode($json_data);
+    }
+
 }
 
 
