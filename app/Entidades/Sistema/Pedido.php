@@ -4,11 +4,17 @@ namespace App\Entidades\Sistema;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use App\Entidades\Sistema\Cliente;
+use App\Entidades\Sistema\Sucursal;
 
 class Pedido extends Model{
 
       protected $table = 'pedidos';
       public $timestamps = false;
+
+      private $nombreCliente;
+      private $telefonoCliente;
+      private $nombreSucursal;
 
       protected $fillable = [
             'idpedido', 'fecha', 'total', 'fk_idcliente', 'fk_idsucursal', 'fk_idestadopedido', 'metodo_pago',
@@ -119,8 +125,60 @@ class Pedido extends Model{
                   $this->fk_idestadopedido,
                   $this->metodo_pago,
             ]);
+
+            $cliente = new Cliente();
+            $cliente->obtenerPorId($this->fk_idcliente);
+            $this->nombreCliente = $cliente->nombre;
+            $this->telefonoCliente = $cliente->telefono;
+
+            $sucursal = new Sucursal();
+            $sucursal->obtenerPorId($this->fk_idsucursal);
+            $this->nombreSucursal = $sucursal->nombre;
+
             return $this->idpedido = DB::getPdo()->lastInsertId();
       }
+
+      public function obtenerFiltrado()
+    {
+        $request = $_REQUEST;
+        $columns = array(
+            0 => 'A.idpedido',
+            1 => 'A.idpedido',
+            2 => 'B.nombre',
+            3 => 'B.telefono',
+            4 => 'A.fecha',
+            5 => 'C.nombre',
+            6 => 'A.total',
+            );
+        $sql = "SELECT DISTINCT
+                  A.idpedido,
+                  A.idpedido,
+                  B.nombre,
+                  B.telefono,
+                  A.fecha,
+                  C.nombre,
+                  A.total
+                  FROM pedidos A
+                  INNER JOIN clientes B ON A.fk_idcliente = B.idcliente
+                  INNER JOIN sucursales C ON A.fk_idsucursal = C.idsucursal
+                  WHERE 1=1
+                  ";
+
+        //Realiza el filtrado
+        if (!empty($request['search']['value'])) {
+            $sql .= " AND ( A.idpedido LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR B.nombre LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR B.telefono LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " OR A.fecha LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " OR C.nombre LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " OR A.total LIKE '%" . $request['search']['value'] . "%' )";
+        }
+        $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
+
+        $lstRetorno = DB::select($sql);
+
+        return $lstRetorno;
+    }
     
 
 

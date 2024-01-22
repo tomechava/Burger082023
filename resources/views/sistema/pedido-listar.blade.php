@@ -30,27 +30,26 @@ if (isset($msg)) {
 <table id="grilla" class="display">
     <thead>
         <tr>
-            <th>Ver pedido</th>
-            <th>NPedido</th>
-            <th>Sucursal</th>
+            <th></th>
+            <th>N° Pedido</th>
             <th>Cliente</th>
             <th>Celular</th>
             <th>Fecha</th>
+            <th>Sucursal</th>
             <th>Total</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach($aPedidos as $pedido)
-        <tr>
-            <td><a href=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-            <td>{{$pedido->idpedido}}</td>
-            <td>{{$pedido->fk_idsucursal}}</td>
-            <td>{{$pedido->fk_idcliente}}</td>
-            <td>{{$pedido->fk_idcliente}}</td>
-            <td>{{$pedido->fecha}}</td>
-            <td>{{$pedido->total}}</td>
-        </tr>
-        @endforeach
-    </tbody>
 </table> 
+<script>
+	var dataTable = $('#grilla').DataTable({
+	    "processing": true,
+        "serverSide": true,
+	    "bFilter": true,
+	    "bInfo": true,
+	    "bSearchable": true,
+        "pageLength": 25,
+        "order": [[ 0, "asc" ]],
+	    "ajax": "{{ route('pedido.cargarGrilla') }}"
+	});
+</script>
 @endsection
