@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Clave: *</label>
-                    <input type="text" id="txtClave" name="txtClave" class="form-control" value="">
+                    <input type="text" id="txtClave" name="txtClave" class="form-control" value="" <?php echo isset($cliente->idcliente) && ($cliente->idcliente > 0)? "": "required"; ?>>
                 </div>
             </div>
       </form>

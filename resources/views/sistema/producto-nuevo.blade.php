@@ -4,8 +4,8 @@
 
 @section('scripts')
 <script>
-      globalId = '';
-      <?php $globalId = "";?>
+    globalId = '<?php echo isset($producto->idproducto) && $producto->idproducto > 0 ? $producto->idproducto : 0; ?>';
+    <?php $globalId = isset($producto->idproducto) ? $producto->idproducto : "0";?>
 </script>
 @endsection
 
@@ -49,24 +49,24 @@ $aCategorias = $categoria->obtenerTodos();
                 <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                 <div class="form-group col-lg-6">
                     <label>Nombre: *</label>
-                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{$producto->nombre}}" required>
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Cantidad: *</label>
-                    <input type="text" id="txtCantidad" name="txtCantidad" class="form-control" value="" required>
+                    <input type="text" id="txtCantidad" name="txtCantidad" class="form-control" value="{{$producto->cantidad}}" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-lg-6">
                     <label>Precio: *</label>
-                    <input type="number" id="txtPrecio" name="txtPrecio" class="form-control" value="" required>
+                    <input type="number" id="txtPrecio" name="txtPrecio" class="form-control" value="{{$producto->precio}}" required>
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Categoría: *</label>
                     <select name="lstCategoria" id="lstCategoria" class="form-control">
                         <option value="" selected disabled>Seleccionar</option>
                         @foreach ($aCategorias as $item)
-                            <option value="{{$item->idcategoria}}">{{$item->nombre}}</option>
+                            <option value="{{$item->idcategoria}}" <?php echo $producto->fk_idcategoria=$item->idcategoria? "Selected" : ""; ?> >{{$item->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -74,7 +74,7 @@ $aCategorias = $categoria->obtenerTodos();
             <div class="row">
                 <div class="form-group col-lg-12">
                     <label>Descripción: </label>
-                    <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" rows="3"></textarea>
+                    <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" rows="3"><?php $producto->descripcion ?></textarea>
                 </div>
             </div>
             <div class="row">

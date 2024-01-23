@@ -54,7 +54,7 @@ class Producto extends Model{
                   descripcion,
                   imagen,
                   fk_idcategoria
-                  FROM productos WHERE idproducto == $idProducto";
+                  FROM productos WHERE idproducto = $idProducto";
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {

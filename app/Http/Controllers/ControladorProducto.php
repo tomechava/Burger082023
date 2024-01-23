@@ -10,7 +10,8 @@ class ControladorProducto extends Controller {
       public function nuevo()
     {
         $titulo = "Nuevo Producto";
-        return view('sistema.producto-nuevo', compact('titulo'));
+        $producto = new Producto();
+        return view('sistema.producto-nuevo', compact('titulo', 'producto'));
 
     }
 
@@ -115,6 +116,14 @@ class ControladorProducto extends Controller {
             "data" => $data,
         );
         return json_encode($json_data);
+    }
+
+    public function editar($id){
+        $titulo = "Modificar Producto";
+        $producto = new Producto();
+        $producto->obtenerPorId($id);
+
+        return view('sistema.producto-nuevo', compact( 'titulo', 'producto'));
     }
 
 }
