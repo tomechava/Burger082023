@@ -31,15 +31,21 @@ if (isset($msg)) {
 <table id="grilla" class="display">
     <thead>
         <tr>
+            <th>Ver</th>
             <th>Nombre</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach($aCategorias as $categoria)
-        <tr>
-            <td>{{$categoria->nombre}}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table> 
+</table>
+<script>
+	var dataTable = $('#grilla').DataTable({
+	    "processing": true,
+        "serverSide": true,
+	    "bFilter": true,
+	    "bInfo": true,
+	    "bSearchable": true,
+        "pageLength": 25,
+        "order": [[ 0, "asc" ]],
+	    "ajax": "{{ route('categoria.cargarGrilla') }}"
+	});
+</script> 
 @endsection

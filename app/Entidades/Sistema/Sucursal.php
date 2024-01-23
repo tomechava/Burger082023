@@ -118,25 +118,24 @@ class Sucursal extends Model{
             2 => 'A.direccion',
             3 => 'A.telefono',
             4 => 'A.mapa',
-            5 => 'nombreEstado',
+            5 => 'nombreEstado'
             );
         $sql = "SELECT DISTINCT
-                  'A.idsucursal',
-                  'A.nombre',
-                  'A.direccion',
-                  'A.telefono',
-                  'A.mapa',
-                  'B.nombre' as nombreEstado
+                  A.idsucursal,
+                  A.nombre,
+                  A.direccion,
+                  A.telefono,
+                  A.mapa,
+                  B.nombre as nombreEstado
                   FROM sucursales A
-                  LEFT JOIN estados_sucursales B ON A.fk_idestadosucursal = B.idestadosucursal
-                  WHERE 1=1
-                  ";
+                  INNER JOIN estados_sucursales B ON A.fk_idestadosucursal = B.idestadosucursal
+                WHERE 1=1
+                ";
 
         //Realiza el filtrado
         if (!empty($request['search']['value'])) {
-            $sql .= " AND ( A.idsucursal LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR A.nombre LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR A.direccion LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " AND ( A.nombre LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR A.direccion LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR A.telefono LIKE '%" . $request['search']['value'] . "%' )";
             $sql .= " OR A.mapa LIKE '%" . $request['search']['value'] . "%' )";
             $sql .= " OR nombreEstado LIKE '%" . $request['search']['value'] . "%' )";

@@ -33,7 +33,7 @@ class ControladorCategoria extends Controller {
                 $msg["ESTADO"] = MSG_ERROR;
                 $msg["MSG"] = "Complete todos los datos";
 
-                $categoria = new Producto();
+                $categoria = new Categoria();
                 $categoria->obtenerPorId($entidad->idcategoria);
         
                 return view('sistema.categoria-nuevo', compact('idcategoria', 'nombre',)) . '?id=' . $entidad->idcategoria;
@@ -62,6 +62,37 @@ class ControladorCategoria extends Controller {
             $msg["MSG"] = ERRORINSERT;
         }
 
+    }
+
+    public function cargarGrilla()
+    {
+        $request = $_REQUEST;
+
+        $entidad = new Categoria();
+        $aCategorias = $entidad->obtenerFiltrado();
+
+        $data = array();
+        $cont = 0;
+
+        $inicio = $request['start'];
+        $registros_por_pagina = $request['length'];
+
+
+        for ($i = $inicio; $i < count($aCategorias) && $cont < $registros_por_pagina; $i++) {
+            $row = array();
+            $row[] = '<a href="/admin/categoria/' . $aCategorias[$i]->idcategoria . '" class="btn btn-secondary">Editar</a>';
+            $row[] = $aCategorias[$i]->nombre;
+            $cont++;
+            $data[] = $row;
+        }
+
+        $json_data = array(
+            "draw" => intval($request['draw']),
+            "recordsTotal" => count($aCategorias), //cantidad total de registros sin paginar
+            "recordsFiltered" => count($aCategorias), //cantidad total de registros en la paginacion
+            "data" => $data,
+        );
+        return json_encode($json_data);
     }
 
 
