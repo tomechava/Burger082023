@@ -53,7 +53,7 @@ class Cliente extends Model{
                   telefono,
                   dni,
                   clave
-                  FROM clientes WHERE idcliente == $idCliente";
+                  FROM clientes WHERE idcliente = $idCliente";
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {
