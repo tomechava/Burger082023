@@ -10,7 +10,8 @@ class ControladorPostulacion extends Controller {
       public function nuevo()
     {
         $titulo = "Nueva postulacion";
-        return view('sistema.postulacion-nuevo', compact('titulo'));
+        $postulacion = new Postulacion();
+        return view('sistema.postulacion-nuevo', compact('titulo', 'postulacion'));
 
     }
 
@@ -97,6 +98,14 @@ class ControladorPostulacion extends Controller {
             "data" => $data,
         );
         return json_encode($json_data);
+    }
+
+    public function editar($id){
+        $titulo = "Modificar Postulacion";
+        $postulacion = new Postulacion();
+        $postulacion->obtenerPorId($id);
+
+        return view('sistema.postulacion-nuevo', compact( 'titulo', 'postulacion'));
     }
 
 }

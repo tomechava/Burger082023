@@ -53,7 +53,7 @@ class Postulacion extends Model{
                   direccion,
                   correo,
                   curriculum
-                  FROM postulaciones WHERE idpostulacion == $idPostulacion";
+                  FROM postulaciones WHERE idpostulacion = $idPostulacion";
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {
