@@ -50,7 +50,7 @@ class Sucursal extends Model{
                   telefono,
                   mapa,
                   fk_idestadosucursal
-                  FROM sucursales WHERE idsucursal == $idSucursal";
+                  FROM sucursales WHERE idsucursal = $idSucursal";
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {

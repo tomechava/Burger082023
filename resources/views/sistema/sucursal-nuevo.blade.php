@@ -4,8 +4,8 @@
 
 @section('scripts')
 <script>
-    globalId = '';
-    <?php $globalId = "";?>
+    globalId = '<?php echo isset($sucursal->idsucursal) && $sucursal->idsucursal > 0 ? $sucursal->idsucursal : 0; ?>';
+    <?php $globalId = isset($sucursal->idsucursal) ? $sucursal->idsucursal : "0";?>
 </script>
 @endsection
 
@@ -49,21 +49,21 @@ $aEstadoSucursal = $entidad->obtenerTodos();
                 <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                 <div class="form-group col-lg-6">
                     <label>Nombre: *</label>
-                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{$sucursal->nombre}}" required>
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Dirección: *</label>
-                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="" required>
+                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="{{$sucursal->direccion}}" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-lg-6">
                     <label>Telefono: *</label>
-                    <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="" required>
+                    <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="{{$sucursal->telefono}}" required>
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Mapa: *</label>
-                    <input type="text" id="txtMapa" name="txtMapa" class="form-control" value="" required>
+                    <input type="text" id="txtMapa" name="txtMapa" class="form-control" value="{{$sucursal->mapa}}" required>
                 </div>
             </div>
             <div class="row">
@@ -72,7 +72,7 @@ $aEstadoSucursal = $entidad->obtenerTodos();
                     <select name="lstEstadoSucursal" id="lstEstadoSucursal" class="form-control" required>
                         <option value="" selected disabled>Seleccionar</option>
                         @foreach ($aEstadoSucursal as $estadoSucursal)
-                        <option value="{{$estadoSucursal->idestadosucursal}}">{{$estadoSucursal->nombre}}</option>
+                        <option value="{{$estadoSucursal->idestadosucursal}}" <?php echo $sucursal->fk_idestadosucursal=$estadoSucursal->idestadosucursal? "selected" : ""; ?> >{{$estadoSucursal->nombre}}</option>
                         @endforeach
                     </select>
                 </div>

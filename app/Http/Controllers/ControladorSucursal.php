@@ -10,7 +10,8 @@ class ControladorSucursal extends Controller {
       public function nuevo()
     {
         $titulo = "Nueva Sucursal";
-        return view('sistema.sucursal-nuevo', compact('titulo'));
+        $sucursal = new Sucursal();
+        return view('sistema.sucursal-nuevo', compact('titulo', 'sucursal'));
 
     }
 
@@ -80,7 +81,7 @@ class ControladorSucursal extends Controller {
 
         for ($i = $inicio; $i < count($aSucursales) && $cont < $registros_por_pagina; $i++) {
             $row = array();
-            $row[] = '<a href="/admin/sucursal/' . '4' . '" class="btn btn-secondary">Editar</a>';
+            $row[] = '<a href="/admin/sucursal/' . $aSucursales[$i]->idsucursal . '" class="btn btn-secondary">Editar</a>';
             $row[] = $aSucursales[$i]->nombre;
             $row[] = $aSucursales[$i]->direccion;
             $row[] = $aSucursales[$i]->telefono;
@@ -97,6 +98,14 @@ class ControladorSucursal extends Controller {
             "data" => $data,
         );
         return json_encode($json_data);
+    }
+
+    public function editar($id){
+        $titulo = "Modificar Sucursal";
+        $sucursal = new Sucursal();
+        $sucursal->obtenerPorId($id);
+
+        return view('sistema.sucursal-nuevo', compact( 'titulo', 'sucursal'));
     }
 
 }
