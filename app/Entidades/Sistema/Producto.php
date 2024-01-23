@@ -11,8 +11,6 @@ class Producto extends Model{
       protected $table = 'productos';
       public $timestamps = false;
 
-      private $nombreCategoria = "hola";
-
       protected $fillable = [
             'idproducto', 'nombre', 'cantidad', 'precio', 'descripcion', 'imagen', 'fk_idcategoria',
       ];
@@ -119,10 +117,6 @@ class Producto extends Model{
                   $this->fk_idcategoria,
             ]);
 
-            $categoria = new Categoria();
-            $categoria->obtenerPorId($this->fk_idcategoria);
-            $this->nombreCategoria = $categoria->nombre;
-
             return $this->idproducto = DB::getPdo()->lastInsertId();
       }
       
@@ -134,12 +128,14 @@ class Producto extends Model{
             1 => 'A.nombre',
             2 => 'B.nombre',
             3 => 'A.precio',
+            4 => 'A.imagen',
             );
         $sql = "SELECT DISTINCT
                   A.idproducto,
                   A.nombre,
                   B.nombre as nombreCategoria,
-                  A.precio
+                  A.precio,
+                  A.imagen
                   FROM productos A
                   INNER JOIN categorias B ON A.fk_idcategoria = B.idcategoria
                   WHERE 1=1

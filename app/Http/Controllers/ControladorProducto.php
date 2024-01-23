@@ -28,6 +28,13 @@ class ControladorProducto extends Controller {
             $entidad = new Producto();
             $entidad->cargarDesdeRequest($request);
 
+            if($_FILES["imgProducto"]["error"] === UPLOAD_ERR_OK){
+                $extension = pathinfo($_FILES["archivo"]["name"], PATHINFO_EXTENSION);
+                $nombre = date("Ymdhmsi") . "." . $extension;
+                $archivo = $_FILES["imgProducto"]["tmp_name"];
+                move_uploaded_file($archivo, env('APP_PATH') . "/public/files/" . $nombre);
+            }
+
             //validaciones
             if ($entidad->nombre == "") {   //Si falta completar algun campo
                 $msg["ESTADO"] = MSG_ERROR;
@@ -37,9 +44,21 @@ class ControladorProducto extends Controller {
                 $producto->obtenerPorId($entidad->idproducto);
         
                 return view('sistema.producto-nuevo', compact('idproducto', 'nombre', 'cantidad', 'precio', 'descripcion', 'imagen', 'fk_idcategoria')) . '?id=' . $entidad->idproducto;
-        
+                
             } else {
                 if ($_POST["id"] > 0) {
+
+                    $productoAnterior = new Producto();
+                    $productoAnterior->obtenerPorId($entidad->idproducto);
+
+                    if($_FILES["imgProducto"]["error"] === UPLOAD_ERR_OK){
+                        if($productoAnterior->imagen != ""){
+                            unlink(env('APP_PATH') . "/public/files/" . $productoAnterior->imagen);
+                        }
+                    } else {
+                        $entidad->imagen = $productoAnterior->imagen;
+                    }
+
                     //Es actualizacion
                     $entidad->guardar();
 
@@ -83,7 +102,8 @@ class ControladorProducto extends Controller {
             $row[] = '<a href="/admin/producto/' . $aProductos[$i]->idproducto . '" class="btn btn-secondary">Editar</a>';
             $row[] = $aProductos[$i]->nombre;
             $row[] = $aProductos[$i]->nombreCategoria;
-            $row[] = $aProductos[$i]->precio;
+            $row[] = '$' . number_format($aProductos[$i]->precio, 2, ",", ".");
+            $row[] = '<img src="/public/files/' . $aProductos[$i]->imagen . '" alt="Imagen del producto" class="img-thumbnail">';
             $cont++;
             $data[] = $row;
         }

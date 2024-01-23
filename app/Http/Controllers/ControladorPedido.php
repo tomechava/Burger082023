@@ -80,7 +80,7 @@ class ControladorPedido extends Controller {
             $row[] = $aPedidos[$i]->telefonoCliente;
             $row[] = $aPedidos[$i]->fecha;
             $row[] = $aPedidos[$i]->nombreSucursal;
-            $row[] = $aPedidos[$i]->total;
+            $row[] = '$' . number_format($aPedidos[$i]->total, 2, ",", ".");
             $cont++;
             $data[] = $row;
         }

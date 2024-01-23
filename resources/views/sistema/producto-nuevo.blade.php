@@ -81,6 +81,7 @@ $aCategorias = $categoria->obtenerTodos();
             <div class="form-group col-lg-6">
                     <label>Imagen: </label>
                     <input type="file" id="imgProducto" name="imgProducto" class="form-control" accept=".jpg, .jpeg, .png">
+                    <small class="d-block">Archivos admitidos: .jpg .jpeg .png</small>
                 </div>
             </div>
       </form>
