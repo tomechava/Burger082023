@@ -10,7 +10,8 @@ class ControladorCategoria extends Controller {
       public function nuevo()
     {
         $titulo = "Nueva Categoría";
-        return view('sistema.categoria-nuevo', compact('titulo'));
+        $categoria = new Categoria();
+        return view('sistema.categoria-nuevo', compact('titulo', 'categoria'));
 
     }
 
@@ -93,6 +94,14 @@ class ControladorCategoria extends Controller {
             "data" => $data,
         );
         return json_encode($json_data);
+    }
+
+    public function editar($id){
+        $titulo = "Modificar Categoria";
+        $categoria = new Categoria();
+        $categoria->obtenerPorId($id);
+
+        return view('sistema.categoria-nuevo', compact( 'titulo', 'categoria'));
     }
 
 
