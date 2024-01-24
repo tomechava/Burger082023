@@ -68,12 +68,12 @@ class Sucursal extends Model{
       public function guardar() {
 
             $sql = "UPDATE sucursales SET
-                  nombre='?',
-                  direccion='?',
-                  telefono='?',
-                  mapa='?',
-                  fk_idestadosucursal='?'
-                  WHERE idsucursal=?";
+                  nombre = ?,
+                  direccion = ?,
+                  telefono = ?,
+                  mapa = ?,
+                  fk_idestadosucursal = ?
+                  WHERE idsucursal = ?";
             $affected = DB::update($sql, [
                   $this->nombre,
                   $this->direccion,
