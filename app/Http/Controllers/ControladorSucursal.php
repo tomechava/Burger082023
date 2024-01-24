@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entidades\Sistema\Sucursal;
+use App\Entidades\Sistema\EstadoSucursal;
 require app_path() . '/start/constants.php';
 
 class ControladorSucursal extends Controller {
@@ -11,7 +12,11 @@ class ControladorSucursal extends Controller {
     {
         $titulo = "Nueva Sucursal";
         $sucursal = new Sucursal();
-        return view('sistema.sucursal-nuevo', compact('titulo', 'sucursal'));
+
+        $estado = new EstadoSucursal();
+        $aEstados = $estado->obtenerTodos();
+        
+        return view('sistema.sucursal-nuevo', compact('titulo', 'sucursal', 'aEstados'));
 
     }
 
@@ -36,8 +41,11 @@ class ControladorSucursal extends Controller {
 
                 $sucursal = new Producto();
                 $sucursal->obtenerPorId($entidad->idsucursal);
+
+                $estado = new EstadoSucursal();
+                $aEstados = $estado->obtenerTodos();
         
-                return view('sistema.sucursal-nuevo', compact('idsucursal', 'nombre', 'direccion', 'telefono', 'mapa', 'fk_idestadosucursal')) . '?id=' . $entidad->idsucursal;
+                return view('sistema.sucursal-nuevo', compact('titulo', 'sucursal', 'aEstados', 'idsucursal', 'nombre', 'direccion', 'telefono', 'mapa', 'fk_idestadosucursal')) . '?id=' . $entidad->idsucursal;
         
             } else {
                 if ($_POST["id"] > 0) {
@@ -105,7 +113,10 @@ class ControladorSucursal extends Controller {
         $sucursal = new Sucursal();
         $sucursal->obtenerPorId($id);
 
-        return view('sistema.sucursal-nuevo', compact( 'titulo', 'sucursal'));
+        $estado = new EstadoSucursal();
+        $aEstados = $estado->obtenerTodos();
+
+        return view('sistema.sucursal-nuevo', compact( 'titulo', 'sucursal', 'aEstados'));
     }
 
 }

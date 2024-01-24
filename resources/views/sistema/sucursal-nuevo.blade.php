@@ -31,11 +31,6 @@
 </script>
 @endsection
 @section('contenido')
-<?php
-use App\Entidades\Sistema\EstadoSucursal;
-$entidad = new EstadoSucursal();
-$aEstadoSucursal = $entidad->obtenerTodos();
-?>
 <div class="panel-body">
       <div id = "msg"></div>
       <?php
@@ -71,8 +66,8 @@ $aEstadoSucursal = $entidad->obtenerTodos();
                     <label>Estado: *</label>
                     <select name="lstEstadoSucursal" id="lstEstadoSucursal" class="form-control" required>
                         <option value="" selected disabled>Seleccionar</option>
-                        @foreach ($aEstadoSucursal as $estadoSucursal)
-                        <option value="{{$estadoSucursal->idestadosucursal}}" <?php echo $sucursal->fk_idestadosucursal=$estadoSucursal->idestadosucursal? "selected" : ""; ?> >{{$estadoSucursal->nombre}}</option>
+                        @foreach ($aEstados as $estado)
+                        <option value="{{$estado->idestadosucursal}}" <?php echo $sucursal->fk_idestadosucursal==$estado->idestadosucursal? "selected" : ""; ?> >{{$estado->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
