@@ -29,11 +29,12 @@ class ControladorProducto extends Controller {
             $entidad = new Producto();
             $entidad->cargarDesdeRequest($request);
 
-            if($_FILES["imgProducto"]["error"] === UPLOAD_ERR_OK){
+            if($_FILES["archivo"]["error"] === UPLOAD_ERR_OK){
                 $extension = pathinfo($_FILES["archivo"]["name"], PATHINFO_EXTENSION);
                 $nombre = date("Ymdhmsi") . "." . $extension;
-                $archivo = $_FILES["imgProducto"]["tmp_name"];
+                $archivo = $_FILES["archivo"]["tmp_name"];
                 move_uploaded_file($archivo, env('APP_PATH') . "/public/files/" . $nombre);
+                $entidad->imagen = $nombre;
             }
 
             //validaciones
@@ -52,7 +53,7 @@ class ControladorProducto extends Controller {
                     $productoAnterior = new Producto();
                     $productoAnterior->obtenerPorId($entidad->idproducto);
 
-                    if($_FILES["imgProducto"]["error"] === UPLOAD_ERR_OK){
+                    if($_FILES["archivo"]["error"] === UPLOAD_ERR_OK){
                         if($productoAnterior->imagen != ""){
                             unlink(env('APP_PATH') . "/public/files/" . $productoAnterior->imagen);
                         }
@@ -67,6 +68,9 @@ class ControladorProducto extends Controller {
                     $msg["MSG"] = OKINSERT;
                 } else {
                     //Es nuevo
+
+                    
+
                     $entidad->insertar();
 
                     $msg["ESTADO"] = MSG_SUCCESS;
@@ -104,7 +108,7 @@ class ControladorProducto extends Controller {
             $row[] = $aProductos[$i]->nombre;
             $row[] = $aProductos[$i]->nombreCategoria;
             $row[] = '$' . number_format($aProductos[$i]->precio, 2, ",", ".");
-            $row[] = '<img src="/public/files/' . $aProductos[$i]->imagen . '" alt="Imagen del producto" class="img-thumbnail">';
+            $row[] = '<img src="'. env('APP_PATH') . '/public/files/' . $aProductos[$i]->imagen . '" alt="Imagen del producto" class="img-thumbnail">';
             $cont++;
             $data[] = $row;
         }

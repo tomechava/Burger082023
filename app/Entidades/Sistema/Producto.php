@@ -25,7 +25,7 @@ class Producto extends Model{
             $this->cantidad = $request->input('txtCantidad');
             $this->precio = $request->input('txtPrecio');
             $this->descripcion = $request->input('txtDescripcion');
-            $this->imagen = $request->input('imgProducto');
+            $this->imagen = $request->input('archivo');
             $this->fk_idcategoria = $request->input('lstCategoria');
       }
 
