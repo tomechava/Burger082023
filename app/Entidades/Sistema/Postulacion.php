@@ -71,23 +71,41 @@ class Postulacion extends Model{
 
       public function guardar() {
 
-            $sql = "UPDATE postulaciones SET
-                  nombre='?',
-                  apellido='?',
-                  telefono='?',
-                  direccion='?',
-                  correo='?',
-                  curriculum='?',
-                  WHERE idpostulacion=?";
-            $affected = DB::update($sql, [
-                  $this->nombre,
-                  $this->apellido,
-                  $this->telefono,
-                  $this->direccion,
-                  $this->correo,
-                  $this->curriculum,
-                  $this->idpostulacion]);
-            
+            if($this->curriculum != ""){
+                  $sql = "UPDATE postulaciones SET
+                        nombre = ?,
+                        apellido = ?,
+                        telefono = ?,
+                        direccion = ?,
+                        correo = ?,
+                        curriculum = ?
+                        WHERE idpostulacion = ?";
+                  $affected = DB::update($sql, [
+                        $this->nombre,
+                        $this->apellido,
+                        $this->telefono,
+                        $this->direccion,
+                        $this->correo,
+                        $this->curriculum,
+                        $this->idpostulacion]);
+
+            }else{
+                  $sql = "UPDATE postulaciones SET
+                        nombre = ?,
+                        apellido = ?,
+                        telefono = ?,
+                        direccion = ?,
+                        correo = ?
+                        WHERE idpostulacion = ?";
+                  $affected = DB::update($sql, [
+                        $this->nombre,
+                        $this->apellido,
+                        $this->telefono,
+                        $this->direccion,
+                        $this->correo,
+                        $this->idpostulacion]);  
+            }
+              
       }
 
       public function eliminar()
