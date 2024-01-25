@@ -4,8 +4,8 @@
 
 @section('scripts')
 <script>
-    globalId = '<?php echo isset($pedido->idpedido) && $pedido->idpedido > 0 ? $pedido->idpedido : 0; ?>';
-    <?php $globalId = isset($pedido->idpedido) ? $pedido->idpedido : "0";?>
+      globalId = '<?php echo isset($pedido->idpedido) && $pedido->idpedido > 0 ? $pedido->idpedido : 0; ?>';
+      <?php $globalId = isset($pedido->idpedido) ? $pedido->idpedido : "0";?>
 </script>
 @endsection
 
@@ -112,15 +112,15 @@
       </div>
 </div>
 <script>
-    function guardar() {
-        if ($("#form1").valid()) {
-            modificado = false;
-            form1.submit();
-        } else {
-            $("#modalGuardar").modal('toggle');
-            msgShow("Corrija los errores e intente nuevamente.", "danger");
-            return false;
-        }
-    }
+      function guardar() {
+            if ($("#form1").valid()) {
+                  modificado = false;
+                  form1.submit();
+            } else {
+                  $("#modalGuardar").modal('toggle');
+                  msgShow("Corrija los errores e intente nuevamente.", "danger");
+                  return false;
+            }
+      }
 </script>
 @endsection

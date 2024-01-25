@@ -71,8 +71,8 @@ class Pedido extends Model{
                   $this->fk_idestadopedido = $lstRetorno[0]->fk_idestadopedido;
                   $this->metodo_pago = $lstRetorno[0]->metodo_pago;
                   return $this;
-              }
-              return null;
+            }
+            return null;
       }
 
       public function guardar() {
