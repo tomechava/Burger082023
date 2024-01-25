@@ -75,6 +75,21 @@ class Pedido extends Model{
             return null;
       }
 
+      public function obtenerPorCliente($idCliente)
+      {
+            $sql = "SELECT
+                  idpedido,
+                  fecha,
+                  total,
+                  fk_idcliente,
+                  fk_idsucursal,
+                  fk_idestadopedido,
+                  metodo_pago
+                  FROM pedidos WHERE fk_idcliente = $idCliente";
+            $lstRetorno = DB::select($sql);
+            return $lstRetorno;
+      }
+
       public function guardar() {
 
             $sql = "UPDATE pedidos SET
