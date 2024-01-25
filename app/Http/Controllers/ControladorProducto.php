@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entidades\Sistema\Producto;
+use App\Entidades\Sistema\Categoria;
 require app_path() . '/start/constants.php';
 
 class ControladorProducto extends Controller {
@@ -108,7 +109,7 @@ class ControladorProducto extends Controller {
             $row[] = $aProductos[$i]->nombre;
             $row[] = $aProductos[$i]->nombreCategoria;
             $row[] = '$' . number_format($aProductos[$i]->precio, 2, ",", ".");
-            $row[] = '<img src="'. env('APP_PATH') . '/public/files/' . $aProductos[$i]->imagen . '" alt="Imagen del producto" class="img-thumbnail">';
+            $row[] = '<img src="/files/' . $aProductos[$i]->imagen . '" alt="Imagen del producto" class="img-thumbnail">';
             $cont++;
             $data[] = $row;
         }
@@ -127,7 +128,10 @@ class ControladorProducto extends Controller {
         $producto = new Producto();
         $producto->obtenerPorId($id);
 
-        return view('sistema.producto-nuevo', compact( 'titulo', 'producto'));
+        $categoria = new Categoria();
+        $aCategorias = $categoria->obtenerTodos();
+
+        return view('sistema.producto-nuevo', compact( 'titulo', 'producto', 'aCategorias'));
     }
 
 }

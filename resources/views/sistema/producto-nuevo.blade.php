@@ -31,11 +31,6 @@
 </script>
 @endsection
 @section('contenido')
-<?php
-use App\Entidades\Sistema\Categoria;
-$categoria = new Categoria();
-$aCategorias = $categoria->obtenerTodos();
-?>
 <div class="panel-body">
       <div id = "msg"></div>
       <?php
@@ -74,7 +69,7 @@ $aCategorias = $categoria->obtenerTodos();
             <div class="row">
                 <div class="form-group col-lg-12">
                     <label>Descripción: </label>
-                    <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" rows="3"><?php $producto->descripcion ?></textarea>
+                    <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" rows="3">{{$producto->descripcion}}</textarea>
                 </div>
             </div>
             <div class="row">
