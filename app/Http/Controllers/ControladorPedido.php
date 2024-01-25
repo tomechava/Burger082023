@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entidades\Sistema\Pedido;
+use App\Entidades\Sistema\Cliente;
+use App\Entidades\Sistema\Sucursal;
+use App\Entidades\Sistema\Producto;
 require app_path() . '/start/constants.php';
 
 class ControladorPedido extends Controller {
@@ -73,8 +76,7 @@ class ControladorPedido extends Controller {
 
         for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
             $row = array();
-            $row[] = '<a href="/admin/pedido/' . $aPedidos[$i]->idpedido . '" class="btn btn-secondary">Editar</a>';
-            $row[] = $aPedidos[$i]->idpedido;
+            $row[] = '<a href="/admin/pedido/' . $aPedidos[$i]->idpedido . '" class="btn btn-secondary">Ver</a>';
             $row[] = $aPedidos[$i]->idpedido;
             $row[] = $aPedidos[$i]->nombreCliente;
             $row[] = $aPedidos[$i]->telefonoCliente;
@@ -93,6 +95,27 @@ class ControladorPedido extends Controller {
         );
         return json_encode($json_data);
     }
+
+    public function editar($id){
+        $titulo = "Ver Pedido";
+        $pedido = new Pedido();
+        $pedido->obtenerPorId($id);
+
+        $cliente = new Cliente();
+        $cliente->obtenerPorId($pedido->fk_idcliente);
+        $pedido->nombreCliente = $cliente->nombre;
+
+        $sucursal = new Sucursal();
+        $sucursal->obtenerPorId($pedido->fk_idsucursal);
+        $pedido->nombreSucursal = $sucursal->nombre;
+
+        $estados = $pedido->obtenerEstados();
+
+        $productos = $pedido->obtenerProductos();
+
+        return view('sistema.pedido-editar', compact( 'titulo', 'pedido', 'cliente', 'sucursal', 'estados', 'productos'));
+    }
+
 
 }
 

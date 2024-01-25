@@ -59,7 +59,7 @@ class Pedido extends Model{
                   fk_idsucursal,
                   fk_idestadopedido,
                   metodo_pago
-                  FROM pedidos WHERE idpedido == $idPedido";
+                  FROM pedidos WHERE idpedido = $idPedido";
             $lstRetorno = DB::select($sql);
             
             if (count($lstRetorno) > 0) {
@@ -178,10 +178,35 @@ class Pedido extends Model{
         $lstRetorno = DB::select($sql);
 
         return $lstRetorno;
-    }
-    
+      }
 
+      public function obtenerEstados()
+      {
+            $sql = "SELECT
+                  idestadopedido,
+                  nombre
+                  FROM estados_pedidos";
+            $lstRetorno = DB::select($sql);
+            return $lstRetorno;
+      }
 
+      public function obtenerProductos()
+      {
+            $sql = "SELECT
+                  A.fk_idproducto,
+                  B.nombre,
+                  B.imagen,
+                  A.precio_unitario,
+                  A.cantidad,
+                  A.total
+                  FROM productos_pedidos A 
+                  INNER JOIN productos B ON A.fk_idproducto = B.idproducto
+                  WHERE fk_idpedido = $this->idpedido";
+            $lstRetorno = DB::select($sql);
+            return $lstRetorno;
+      }
+
+      
 }
 
 ?>
