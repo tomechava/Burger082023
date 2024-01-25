@@ -98,6 +98,24 @@
             return false;
         }
     }
+
+    function eliminar() {
+        $.ajax({
+            type: "GET",
+            url: "{{ asset('admin/producto/eliminar') }}",
+            data: { id:globalId },
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.err == "OK") {
+                    msgShow("Registro eliminado exitosamente.", "success");
+                } else {
+                    msgShow("No se puede eliminar el producto con pedidos asociados", "danger");
+                }
+                $('#mdlEliminar').modal('toggle');
+            }
+        });
+    }
 </script>
 
 
