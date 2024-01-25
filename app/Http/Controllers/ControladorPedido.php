@@ -32,7 +32,7 @@ class ControladorPedido extends Controller {
                 $pedido = new Producto();
                 $pedido->obtenerPorId($entidad->idpedido);
         
-                return view('sistema.pedido-nuevo', compact('idpedido', 'fecha', 'total', 'fk_idcliente', 'fk_idsucursal', 'fk_idestadopedido', 'metodo_pago')) . '?id=' . $entidad->idpedido;
+                return view('sistema.pedido-editar', compact('idpedido', 'fecha', 'total', 'fk_idcliente', 'fk_idsucursal', 'fk_idestadopedido', 'metodo_pago')) . '?id=' . $entidad->idpedido;
         
             } else {
                 if ($_POST["id"] > 0) {
