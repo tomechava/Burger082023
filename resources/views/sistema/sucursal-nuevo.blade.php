@@ -86,5 +86,23 @@
             return false;
         }
     }
+
+    function eliminar() {
+        $.ajax({
+            type: "GET",
+            url: "{{ asset('admin/sucursal/eliminar') }}",
+            data: { id:globalId },
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.err == "OK") {
+                    msgShow("Registro eliminado exitosamente.", "success");
+                } else {
+                    msgShow("No se puede eliminar la sucursal con pedidos asociados", "danger");
+                }
+                $('#mdlEliminar').modal('toggle');
+            }
+        });
+    }
 </script>
 @endsection

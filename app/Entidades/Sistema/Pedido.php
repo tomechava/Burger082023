@@ -110,6 +110,25 @@ class Pedido extends Model{
             return $lstRetorno;
       }
 
+      public function obtenerPorSucursal($idSucursal)
+      {
+            $sql = "SELECT
+                  A.idpedido,
+                  A.fecha,
+                  A.total,
+                  A.fk_idcliente,
+                  A.fk_idsucursal,
+                  A.fk_idestadopedido,
+                  A.metodo_pago,
+                  B.idsucursal,
+                  B.nombre
+                  FROM pedidos A
+                  INNER JOIN sucursales B ON A.fk_idsucursal = B.idsucursal
+                  WHERE B.idsucursal = $idSucursal";
+            $lstRetorno = DB::select($sql);
+            return $lstRetorno;
+      }
+
       public function guardar() {
 
             $sql = "UPDATE pedidos SET
