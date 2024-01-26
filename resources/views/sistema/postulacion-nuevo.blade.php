@@ -86,5 +86,23 @@
             return false;
         }
     }
+
+    function eliminar() {
+        $.ajax({
+            type: "GET",
+            url: "{{ asset('admin/postulacion/eliminar') }}",
+            data: { id:globalId },
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.err == "OK") {
+                    msgShow("Registro eliminado exitosamente.", "success");
+                } else {
+                    msgShow("No se pudo eliminar el registro.", "danger");
+                }
+                $('#mdlEliminar').modal('toggle');
+            }
+        });
+    }
 </script>
 @endsection

@@ -108,6 +108,19 @@ class ControladorPostulacion extends Controller {
         return view('sistema.postulacion-nuevo', compact( 'titulo', 'postulacion'));
     }
 
+    public function eliminar(Request $request){
+
+        $id = $request->input("id");
+        
+        $postulacion = new Postulacion();
+        $postulacion->idpostulacion = $id;
+        $postulacion->eliminar();
+        $data["err"] = "OK";
+        
+        return json_encode($data);
+
+    }
+
 }
 
 
