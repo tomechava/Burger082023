@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entidades\Sistema\Categoria;
+use App\Entidades\Sistema\Producto;
 require app_path() . '/start/constants.php';
 
 class ControladorCategoria extends Controller {
@@ -102,6 +103,28 @@ class ControladorCategoria extends Controller {
         $categoria->obtenerPorId($id);
 
         return view('sistema.categoria-nuevo', compact( 'titulo', 'categoria'));
+    }
+
+    public function eliminar(Request $request){
+
+        $id = $request->input("id");
+
+        //Si no tiene pedidos asociados, lo elimino
+        $producto = new Producto();
+        $aProductos = $producto->obtenerPorCategoria($id);
+
+        if(count($aProductos)==0){
+            $categoria = new Categoria();
+            $categoria->idcategoria = $id;
+            $categoria->eliminar();
+            $data["err"] = "OK";
+
+        }else{
+            $data["err"] = "No se puede eliminar la categoria con productos asociados.";
+        
+        }
+        return json_encode($data);
+
     }
 
 

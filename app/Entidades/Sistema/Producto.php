@@ -70,6 +70,22 @@ class Producto extends Model{
               return null;
       }
 
+      public function obtenerPorCategoria($idCategoria){
+
+            $sql = "SELECT
+                  idproducto,
+                  nombre,
+                  cantidad,
+                  precio,
+                  descripcion,
+                  imagen,
+                  fk_idcategoria
+                  FROM productos WHERE fk_idcategoria = $idCategoria";
+            $lstRetorno = DB::select($sql);
+            return $lstRetorno;
+
+      }
+
       public function guardar() {
 
             $sql = "UPDATE productos SET

@@ -60,5 +60,23 @@
             return false;
         }
     }
+
+    function eliminar() {
+        $.ajax({
+            type: "GET",
+            url: "{{ asset('admin/categoria/eliminar') }}",
+            data: { id:globalId },
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.err == "OK") {
+                    msgShow("Registro eliminado exitosamente.", "success");
+                } else {
+                    msgShow("No se puede eliminar la categoria con productos asociados.", "danger");
+                }
+                $('#mdlEliminar').modal('toggle');
+            }
+        });
+    }
 </script>
 @endsection
