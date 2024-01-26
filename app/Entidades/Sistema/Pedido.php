@@ -90,6 +90,26 @@ class Pedido extends Model{
             return $lstRetorno;
       }
 
+      public function obtenerPorProducto($idProducto)
+      {
+            $sql = "SELECT
+                  A.idpedido,
+                  A.fecha,
+                  A.total,
+                  A.fk_idcliente,
+                  A.fk_idsucursal,
+                  A.fk_idestadopedido,
+                  A.metodo_pago,
+                  C.idproducto,
+                  C.nombre
+                  FROM pedidos A
+                  INNER JOIN productos_pedidos B ON B.fk_idpedido = A.idpedido 
+                  INNER JOIN productos C ON B.fk_idproducto = C.idproducto
+                  WHERE C.idproducto = $idProducto";
+            $lstRetorno = DB::select($sql);
+            return $lstRetorno;
+      }
+
       public function guardar() {
 
             $sql = "UPDATE pedidos SET
