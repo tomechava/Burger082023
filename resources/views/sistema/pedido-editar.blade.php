@@ -70,7 +70,7 @@
                         <div class="row">
                               <div class="form-group col-lg-6">
                                     <label>Comentarios: </label>
-                                    <textarea name="" id="" class="form-control" rows="3" readonly>{{$pedido->comentario}}</textarea>
+                                    <textarea name="" id="" class="form-control" style="height: 100px !important" readonly>{{$pedido->comentario}}</textarea>
                               </div>
                               <div class="form-group col-lg-6">
                                     <label>Metodo de Pago: </label>
@@ -97,6 +97,7 @@
                               <th>Precio</th>
                         </thead>
                         <tbody>
+                              {{$total = 0}}
                               @foreach ($aProductosPedido as $producto)
                               <tr>
                                     <td><img src="/files/{{$producto->imagen}}" alt="Imagen del producto" class="img-thumbnail" width="200px"></td>
@@ -106,12 +107,13 @@
                                     <td></td>
                                     <td>${{number_format($producto->precio_unitario, 2, ",", ".")}}</td>
                               </tr>
+                              {{$total += $producto->precio_unitario * $producto->cantidad}}
                               @endforeach
                         </tbody>
                         <tfoot>
                               <tr>
-                                    <td colspan="5" class="text-right"><h6>Total</h6></td>
-                                    <td><h6>${{number_format($pedido->total, 2, ",", ".")}}</h6></td>
+                                    <td colspan="5" class="text-right"><h5>Total</h5></td>
+                                    <td><h5>${{number_format($total, 2, ",", ".")}}</h5></td>
                               </tr>
                         </tfoot>   
                   </table>
