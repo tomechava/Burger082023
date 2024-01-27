@@ -10,15 +10,37 @@ class ControladorPostulacion extends Controller {
       public function nuevo()
     {
         $titulo = "Nueva postulacion";
-        $postulacion = new Postulacion();
-        return view('sistema.postulacion-nuevo', compact('titulo', 'postulacion'));
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("POSTULANTEALTA")) {
+                $codigo = "POSTULANTEALTA";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+
+            } else {
+                $postulacion = new Postulacion();
+                return view('sistema.postulacion-nuevo', compact('titulo', 'postulacion'));
+            }
+        }else{
+            return redirect('admin/login');
+        }
 
     }
 
     public function index()
     {
             $titulo = "Listado de postulaciones";
-            return view('sistema.postulacion-listar', compact('titulo'));
+            if (Usuario::autenticado() == true) {
+                if (!Patente::autorizarOperacion("POSTULANTECONSULTA")) {
+                    $codigo = "POSTULANTECONSULTA";
+                    $mensaje = "No tiene pemisos para la operación.";
+                    return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+    
+                } else {
+                    return view('sistema.postulacion-listar', compact('titulo'));
+                }
+            }else{
+                return redirect('admin/login');
+            }
     }
 
     public function guardar(Request $request){
@@ -102,22 +124,44 @@ class ControladorPostulacion extends Controller {
 
     public function editar($id){
         $titulo = "Modificar Postulacion";
-        $postulacion = new Postulacion();
-        $postulacion->obtenerPorId($id);
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("POSTULANTEEDITAR")) {
+                $codigo = "POSTULANTEEDITAR";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        return view('sistema.postulacion-nuevo', compact( 'titulo', 'postulacion'));
+            } else {
+                $postulacion = new Postulacion();
+                $postulacion->obtenerPorId($id);
+
+                return view('sistema.postulacion-nuevo', compact( 'titulo', 'postulacion'));
+            }
+        } else { 
+            return redirect('admin/login');
+        }
     }
 
     public function eliminar(Request $request){
+        $titulo = "Eliminar postulacion";
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("POSTULANTEBAJA")) {
+                $codigo = "POSTULANTEBAJA";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        $id = $request->input("id");
-        
-        $postulacion = new Postulacion();
-        $postulacion->idpostulacion = $id;
-        $postulacion->eliminar();
-        $data["err"] = "OK";
-        
-        return json_encode($data);
+            } else {
+                $id = $request->input("id");
+                
+                $postulacion = new Postulacion();
+                $postulacion->idpostulacion = $id;
+                $postulacion->eliminar();
+                $data["err"] = "OK";
+                
+                return json_encode($data);
+            }
+        } else { 
+            return redirect('admin/login');
+        }
 
     }
 
