@@ -114,7 +114,7 @@ class ControladorProducto extends Controller {
             $row[] = $aProductos[$i]->nombre;
             $row[] = $aProductos[$i]->nombreCategoria;
             $row[] = '$' . number_format($aProductos[$i]->precio, 2, ",", ".");
-            $row[] = '<img src="/files/' . $aProductos[$i]->imagen . '" alt="Imagen del producto" class="img-thumbnail">';
+            $row[] = '<img src="/files/' . $aProductos[$i]->imagen . '" alt="Imagen del producto" class="img-thumbnail" width="200px">';
             $cont++;
             $data[] = $row;
         }
