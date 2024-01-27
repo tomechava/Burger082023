@@ -8,6 +8,8 @@ use App\Entidades\Sistema\Sucursal;
 use App\Entidades\Sistema\Producto;
 use App\Entidades\Sistema\EstadoPedido;
 use App\Entidades\Sistema\ProductoPedido;
+use App\Entidades\Sistema\Usuario;
+use App\Entidades\Sistema\Patente;
 require app_path() . '/start/constants.php';
 
 class ControladorPedido extends Controller {

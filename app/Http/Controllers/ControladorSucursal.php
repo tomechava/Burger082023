@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Entidades\Sistema\Sucursal;
 use App\Entidades\Sistema\EstadoSucursal;
 use App\Entidades\Sistema\Pedido;
+use App\Entidades\Sistema\Usuario;
+use App\Entidades\Sistema\Patente;
 require app_path() . '/start/constants.php';
 
 class ControladorSucursal extends Controller {
@@ -12,19 +14,41 @@ class ControladorSucursal extends Controller {
       public function nuevo()
     {
         $titulo = "Nueva Sucursal";
-        $sucursal = new Sucursal();
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("SUCURSALALTA")) {
+                $codigo = "SUCURSALALTA";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        $estado = new EstadoSucursal();
-        $aEstados = $estado->obtenerTodos();
-        
-        return view('sistema.sucursal-nuevo', compact('titulo', 'sucursal', 'aEstados'));
+            } else {
+                $sucursal = new Sucursal();
+
+                $estado = new EstadoSucursal();
+                $aEstados = $estado->obtenerTodos();
+                
+                return view('sistema.sucursal-nuevo', compact('titulo', 'sucursal', 'aEstados'));
+            }
+        }else{
+            return redirect('admin/login');
+        }
 
     }
 
     public function index()
     {
             $titulo = "Listado de Sucursales";
-            return view('sistema.sucursal-listar', compact('titulo'));
+            if (Usuario::autenticado() == true) {
+                if (!Patente::autorizarOperacion("SUCURSALCONSULTA")) {
+                    $codigo = "SUCURSALCONSULTA";
+                    $mensaje = "No tiene pemisos para la operación.";
+                    return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+    
+                } else {
+                    return view('sistema.sucursal-listar', compact('titulo'));
+                }
+            }else{
+                return redirect('admin/login');
+            }
     }
 
     public function guardar(Request $request){
@@ -111,34 +135,56 @@ class ControladorSucursal extends Controller {
 
     public function editar($id){
         $titulo = "Modificar Sucursal";
-        $sucursal = new Sucursal();
-        $sucursal->obtenerPorId($id);
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("SUCURSALEDITAR")) {
+                $codigo = "SUCURSALEDITAR";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        $estado = new EstadoSucursal();
-        $aEstados = $estado->obtenerTodos();
+            } else {
+                $sucursal = new Sucursal();
+                $sucursal->obtenerPorId($id);
 
-        return view('sistema.sucursal-nuevo', compact( 'titulo', 'sucursal', 'aEstados'));
+                $estado = new EstadoSucursal();
+                $aEstados = $estado->obtenerTodos();
+
+                return view('sistema.sucursal-nuevo', compact( 'titulo', 'sucursal', 'aEstados'));
+            }
+        }else {
+            return redirect('admin/login');
+        }
     }
 
     public function eliminar(Request $request){
+        $titulo = "Eliminar Sucursal";
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("SUCURSALBAJA")) {
+                $codigo = "SUCURSALBAJA";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        $id = $request->input("id");
+            } else {
+                $id = $request->input("id");
 
-        //Si no tiene pedidos asociados, lo elimino
-        $pedido = new Pedido();
-        $aPedidos = $pedido->obtenerPorSucursal($id);
+                //Si no tiene pedidos asociados, lo elimino
+                $pedido = new Pedido();
+                $aPedidos = $pedido->obtenerPorSucursal($id);
 
-        if(count($aPedidos)==0){
-            $sucursal = new Sucursal();
-            $sucursal->idsucursal = $id;
-            $sucursal->eliminar();
-            $data["err"] = "OK";
+                if(count($aPedidos)==0){
+                    $sucursal = new Sucursal();
+                    $sucursal->idsucursal = $id;
+                    $sucursal->eliminar();
+                    $data["err"] = "OK";
 
-        }else{
-            $data["err"] = "No se puede eliminar la sucursal con pedidos asociados";
-        
+                }else{
+                    $data["err"] = "No se puede eliminar la sucursal con pedidos asociados";
+                
+                }
+                return json_encode($data);
+            }
+        }else {
+            return redirect('admin/login');
         }
-        return json_encode($data);
 
     }
 
