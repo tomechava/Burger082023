@@ -9,17 +9,39 @@ require app_path() . '/start/constants.php';
 class ControladorCategoria extends Controller {
 
       public function nuevo()
-    {
+    {   
         $titulo = "Nueva Categoría";
-        $categoria = new Categoria();
-        return view('sistema.categoria-nuevo', compact('titulo', 'categoria'));
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("CATEGORIAALTA")) {
+                $codigo = "CATEGORIAALTA";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
+            } else {
+                
+                $categoria = new Categoria();
+                return view('sistema.categoria-nuevo', compact('titulo', 'categoria'));
+            }
+        }else{
+            return redirect('admin/login');
+        }
     }
 
     public function index()
     {
             $titulo = "Listado de Categorías";
-            return view('sistema.categoria-listar', compact('titulo'));
+            if (Usuario::autenticado() == true) {
+                if (!Patente::autorizarOperacion("CATEGORIACONSULTA")) {
+                    $codigo = "CATEGORIACONSULTA";
+                    $mensaje = "No tiene pemisos para la operación.";
+                    return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+    
+                } else {
+                    return view('sistema.categoria-listar', compact('titulo'));
+                }
+            }else{
+                return redirect('admin/login');
+            }
     }
 
     public function guardar(Request $request){
@@ -99,31 +121,54 @@ class ControladorCategoria extends Controller {
 
     public function editar($id){
         $titulo = "Modificar Categoria";
-        $categoria = new Categoria();
-        $categoria->obtenerPorId($id);
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("CATEGORIAEDITAR")) {
+                $codigo = "CATEGORIAEDITAR";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        return view('sistema.categoria-nuevo', compact( 'titulo', 'categoria'));
+            } else {
+                $categoria = new Categoria();
+                $categoria->obtenerPorId($id);
+
+                return view('sistema.categoria-nuevo', compact( 'titulo', 'categoria'));
+            }
+        }else{
+            return redirect('admin/login');
+        }
     }
 
     public function eliminar(Request $request){
+        $titulo = "Eliminar Categoria";
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("CATEGORIAEDITAR")) {
+                $codigo = "CATEGORIAEDITAR";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        $id = $request->input("id");
+            } else {
 
-        //Si no tiene pedidos asociados, lo elimino
-        $producto = new Producto();
-        $aProductos = $producto->obtenerPorCategoria($id);
+                $id = $request->input("id");
 
-        if(count($aProductos)==0){
-            $categoria = new Categoria();
-            $categoria->idcategoria = $id;
-            $categoria->eliminar();
-            $data["err"] = "OK";
+                //Si no tiene pedidos asociados, lo elimino
+                $producto = new Producto();
+                $aProductos = $producto->obtenerPorCategoria($id);
 
-        }else{
-            $data["err"] = "No se puede eliminar la categoria con productos asociados.";
-        
+                if(count($aProductos)==0){
+                    $categoria = new Categoria();
+                    $categoria->idcategoria = $id;
+                    $categoria->eliminar();
+                    $data["err"] = "OK";
+
+                }else{
+                    $data["err"] = "No se puede eliminar la categoria con productos asociados.";
+                
+                }
+                return json_encode($data);
+            }
+        } else { 
+            return redirect('admin/login');
         }
-        return json_encode($data);
 
     }
 

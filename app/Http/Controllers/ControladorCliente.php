@@ -146,7 +146,7 @@ class ControladorCliente extends Controller {
     }
 
     public function eliminar(Request $request){
-        
+        $titulo = "Eliminar Cliente";
         if (Usuario::autenticado() == true) {
             if (!Patente::autorizarOperacion("CLIENTEELIMINAR")) {
                 $codigo = "CLIENTEELIMINAR";
