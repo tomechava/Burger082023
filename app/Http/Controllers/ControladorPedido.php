@@ -15,7 +15,18 @@ class ControladorPedido extends Controller {
       public function index()
     {
             $titulo = "Listado de Pedidos";
-            return view('sistema.pedido-listar', compact('titulo'));
+            if (Usuario::autenticado() == true) {
+                if (!Patente::autorizarOperacion("PEDIDOCONSULTA")) {
+                    $codigo = "PEDIDOCONSULTA";
+                    $mensaje = "No tiene pemisos para la operación.";
+                    return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+    
+                } else {
+                    return view('sistema.pedido-listar', compact('titulo'));
+                }
+            }else{
+                return redirect('admin/login');
+            }
     }
 
     public function guardar(Request $request){
@@ -100,25 +111,37 @@ class ControladorPedido extends Controller {
 
     public function editar($id){
         $titulo = "Editar Pedido";
-        $metodos_pago = ["Efectivo", "Transferencia", "Bono"];
-        $pedido = new Pedido();
-        $pedido->obtenerPorId($id);
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("PEDIDOEDITAR")) {
+                $codigo = "PEDIDOEDITAR	";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        $cliente = new Cliente();
-        $cliente->obtenerPorId($pedido->fk_idcliente);
-        $pedido->nombreCliente = $cliente->nombre;
+            } else {
+                $metodos_pago = ["Efectivo", "Transferencia", "Bono"];
+                $pedido = new Pedido();
+                $pedido->obtenerPorId($id);
 
-        $sucursal = new Sucursal();
-        $sucursal->obtenerPorId($pedido->fk_idsucursal);
-        $pedido->nombreSucursal = $sucursal->nombre;
+                $cliente = new Cliente();
+                $cliente->obtenerPorId($pedido->fk_idcliente);
+                $pedido->nombreCliente = $cliente->nombre;
 
-        $estadoPedido = new EstadoPedido();
-        $aEstados = $estadoPedido->obtenerTodos();
+                $sucursal = new Sucursal();
+                $sucursal->obtenerPorId($pedido->fk_idsucursal);
+                $pedido->nombreSucursal = $sucursal->nombre;
 
-        $productoPedido = new ProductoPedido();
-        $aProductosPedido = $productoPedido->obtenerPorPedido($id);
+                $estadoPedido = new EstadoPedido();
+                $aEstados = $estadoPedido->obtenerTodos();
 
-        return view('sistema.pedido-editar', compact( 'titulo', 'pedido', 'aEstados', 'aProductosPedido', 'metodos_pago', 'cliente', 'sucursal'));
+                $productoPedido = new ProductoPedido();
+                $aProductosPedido = $productoPedido->obtenerPorPedido($id);
+
+                return view('sistema.pedido-editar', compact( 'titulo', 'pedido', 'aEstados', 'aProductosPedido', 'metodos_pago', 'cliente', 'sucursal'));
+    
+            }
+        } else { 
+            return redirect('admin/login');
+        }
     }
 
 
