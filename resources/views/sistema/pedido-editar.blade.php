@@ -98,7 +98,7 @@
                         <tbody>
                               @foreach ($productos as $producto)
                               <tr>
-                                    <td><img src="/public/files{{$producto->imagen}}" alt="Imagen del producto" class="img-thumbnail"></td>
+                                    <td><img src="/files/{{$producto->imagen}}" alt="Imagen del producto" class="img-thumbnail" width="200px"></td>
                                     <td>{{$producto->nombre}}</td>
                                     <td>x{{$producto->cantidad}}</td>
                                     <td></td>
@@ -106,7 +106,13 @@
                                     <td>${{number_format($producto->precio_unitario, 2, ",", ".")}}</td>
                               </tr>
                               @endforeach
-                        </tbody>   
+                        </tbody>
+                        <tfoot>
+                              <tr>
+                                    <td colspan="5" class="text-right"><h6>Total</h6></td>
+                                    <td><h6>${{number_format($pedido->total, 2, ",", ".")}}</h6></td>
+                              </tr>
+                        </tfoot>   
                   </table>
             </div>
       </div>
