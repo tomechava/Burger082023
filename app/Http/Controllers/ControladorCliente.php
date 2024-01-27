@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entidades\Sistema\Cliente;
 use App\Entidades\Sistema\Pedido;
+use App\Entidades\Sistema\Usuario;
+use App\Entidades\Sistema\Patente;
 require app_path() . '/start/constants.php';
 
 class ControladorCliente extends Controller {
@@ -11,15 +13,39 @@ class ControladorCliente extends Controller {
       public function nuevo()
     {
         $titulo = "Nuevo Cliente";
-        $cliente = new Cliente();
-        return view('sistema.cliente-nuevo', compact('titulo', 'cliente'));
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("CLIENTEALTA")) {
+                $codigo = "CLIENTEALTA";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+
+            } else {
+                $cliente = new Cliente();
+                return view('sistema.cliente-nuevo', compact('titulo', 'cliente'));
+
+            }
+        }else{
+            return redirect('admin/login');
+        }
 
     }
 
     public function index()
     {
+
             $titulo = "Listado de Clientes";
-            return view('sistema.cliente-listar', compact('titulo'));
+            if (Usuario::autenticado() == true) {
+                if (!Patente::autorizarOperacion("CLIENTECONSULTA")) {
+                    $codigo = "CLIENTECONSULTA";
+                    $mensaje = "No tiene pemisos para la operación.";
+                    return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+    
+                } else {
+                    return view('sistema.cliente-listar', compact('titulo'));
+                }
+            }else{
+                return redirect('admin/login');
+            }
     }
 
     public function guardar(Request $request){
@@ -103,31 +129,53 @@ class ControladorCliente extends Controller {
 
     public function editar($id){
         $titulo = "Modificar Cliente";
-        $cliente = new Cliente();
-        $cliente->obtenerPorId($id);
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("CLIENTEEDITAR")) {
+                $codigo = "CLIENTEEDITAR";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
 
-        return view('sistema.cliente-nuevo', compact( 'titulo', 'cliente'));
+            } else {
+                $cliente = new Cliente();
+                $cliente->obtenerPorId($id);
+
+                return view('sistema.cliente-nuevo', compact( 'titulo', 'cliente'));
+            }
+        } else { 
+            return redirect('admin/login');
+        }
     }
 
     public function eliminar(Request $request){
-
-        $id = $request->input("id");
-
-        //Si no tiene pedidos asociados, lo elimino
-        $pedido = new Pedido();
-        $aPedidos = $pedido->obtenerPorCliente($id);
-
-        if(count($aPedidos)==0){
-            $cliente = new Cliente();
-            $cliente->idcliente = $id;
-            $cliente->eliminar();
-            $data["err"] = "OK";
-
-        }else{
-            $data["err"] = "No se puede eliminar el cliente con pedidos asociados";
         
+        if (Usuario::autenticado() == true) {
+            if (!Patente::autorizarOperacion("CLIENTEELIMINAR")) {
+                $codigo = "CLIENTEELIMINAR";
+                $mensaje = "No tiene pemisos para la operación.";
+                return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+
+            } else {
+                $id = $request->input("id");
+
+                //Si no tiene pedidos asociados, lo elimino
+                $pedido = new Pedido();
+                $aPedidos = $pedido->obtenerPorCliente($id);
+
+                if(count($aPedidos)==0){
+                    $cliente = new Cliente();
+                    $cliente->idcliente = $id;
+                    $cliente->eliminar();
+                    $data["err"] = "OK";
+
+                }else{
+                    $data["err"] = "No se puede eliminar el cliente con pedidos asociados";
+                
+                }
+                return json_encode($data);
+            }
+        } else { 
+            return redirect('admin/login');
         }
-        return json_encode($data);
 
     }
 
