@@ -5,7 +5,7 @@ namespace App\Entidades\Sistema;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
-class Cliente extends Model{
+class ProductoPedido extends Model{
 
       protected $table = 'clientes';
       public $timestamps = false;
@@ -117,25 +117,23 @@ class Cliente extends Model{
       public function obtenerPorPedido($idPedido)
       {
             $sql = "SELECT
-                  idproductopedido,
-                  fk_idproducto,
-                  fk_idpedido,
-                  precio_unitario,
-                  cantidad,
-                  total
-                  FROM productos_pedidos WHERE fk_idpedido = $idPedido";
+                  A.idproductopedido,
+                  A.fk_idproducto,
+                  A.fk_idpedido,
+                  A.precio_unitario,
+                  A.cantidad,
+                  A.total,
+                  B.idproducto,
+                  B.nombre,
+                  B.descripcion,
+                  B.precio,
+                  B.imagen,
+                  B.fk_idcategoria
+                  FROM productos_pedidos A 
+                  INNER JOIN productos B ON A.fk_idproducto = B.idproducto
+                  WHERE fk_idpedido = $idPedido";
             $lstRetorno = DB::select($sql);
-            
-            if (count($lstRetorno) > 0) {
-                  $this->idproductopedido = $lstRetorno[0]->idproductopedido;
-                  $this->fk_idproducto = $lstRetorno[0]->fk_idproducto;
-                  $this->fk_idpedido = $lstRetorno[0]->fk_idpedido;
-                  $this->precio_unitario = $lstRetorno[0]->precio_unitario;
-                  $this->cantidad = $lstRetorno[0]->cantidad;
-                  $this->total = $lstRetorno[0]->total;
-                  return $this;
-              }
-              return null;
+            return $lstRetorno;
       }
 
 }

@@ -6,6 +6,8 @@ use App\Entidades\Sistema\Pedido;
 use App\Entidades\Sistema\Cliente;
 use App\Entidades\Sistema\Sucursal;
 use App\Entidades\Sistema\Producto;
+use App\Entidades\Sistema\EstadoPedido;
+use App\Entidades\Sistema\ProductoPedido;
 require app_path() . '/start/constants.php';
 
 class ControladorPedido extends Controller {
@@ -97,7 +99,8 @@ class ControladorPedido extends Controller {
     }
 
     public function editar($id){
-        $titulo = "Ver Pedido";
+        $titulo = "Editar Pedido";
+        $metodos_pago = ["Efectivo", "Transferencia", "Bono"];
         $pedido = new Pedido();
         $pedido->obtenerPorId($id);
 
@@ -109,11 +112,13 @@ class ControladorPedido extends Controller {
         $sucursal->obtenerPorId($pedido->fk_idsucursal);
         $pedido->nombreSucursal = $sucursal->nombre;
 
-        $estados = $pedido->obtenerEstados();
+        $estadoPedido = new EstadoPedido();
+        $aEstados = $estadoPedido->obtenerTodos();
 
-        $productos = $pedido->obtenerProductos();
+        $productoPedido = new ProductoPedido();
+        $aProductosPedido = $productoPedido->obtenerPorPedido($id);
 
-        return view('sistema.pedido-editar', compact( 'titulo', 'pedido', 'cliente', 'sucursal', 'estados', 'productos'));
+        return view('sistema.pedido-editar', compact( 'titulo', 'pedido', 'aEstados', 'aProductosPedido', 'metodos_pago', 'cliente', 'sucursal'));
     }
 
 

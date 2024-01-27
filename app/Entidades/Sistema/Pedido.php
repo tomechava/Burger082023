@@ -17,7 +17,7 @@ class Pedido extends Model{
       private $nombreSucursal;
 
       protected $fillable = [
-            'idpedido', 'fecha', 'total', 'fk_idcliente', 'fk_idsucursal', 'fk_idestadopedido', 'metodo_pago',
+            'idpedido', 'fecha', 'total', 'fk_idcliente', 'fk_idsucursal', 'fk_idestadopedido', 'metodo_pago', 'comentario'
       ];
     
       protected $hidden = [
@@ -32,6 +32,7 @@ class Pedido extends Model{
             $this->fk_idsucursal = $request->input('lstSucursal');
             $this->fk_idestadopedido = $request->input('lstEstadoPedido');
             $this->metodo_pago = $request->input('lstMetodoPago');
+            $this->comentario = $request->input('txtComentario');
       }
 
       public function obtenerTodos()
@@ -43,7 +44,8 @@ class Pedido extends Model{
                   fk_idcliente,
                   fk_idsucursal,
                   fk_idestadopedido,
-                  metodo_pago
+                  metodo_pago,
+                  comentario
                   FROM pedidos ORDER BY fecha";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -58,7 +60,8 @@ class Pedido extends Model{
                   fk_idcliente,
                   fk_idsucursal,
                   fk_idestadopedido,
-                  metodo_pago
+                  metodo_pago,
+                  comentario
                   FROM pedidos WHERE idpedido = $idPedido";
             $lstRetorno = DB::select($sql);
             
@@ -70,6 +73,7 @@ class Pedido extends Model{
                   $this->fk_idsucursal = $lstRetorno[0]->fk_idsucursal;
                   $this->fk_idestadopedido = $lstRetorno[0]->fk_idestadopedido;
                   $this->metodo_pago = $lstRetorno[0]->metodo_pago;
+                  $this->comentario = $lstRetorno[0]->comentario;
                   return $this;
             }
             return null;
@@ -84,7 +88,8 @@ class Pedido extends Model{
                   fk_idcliente,
                   fk_idsucursal,
                   fk_idestadopedido,
-                  metodo_pago
+                  metodo_pago,
+                  comentario
                   FROM pedidos WHERE fk_idcliente = $idCliente";
             $lstRetorno = DB::select($sql);
             return $lstRetorno;
@@ -100,6 +105,7 @@ class Pedido extends Model{
                   A.fk_idsucursal,
                   A.fk_idestadopedido,
                   A.metodo_pago,
+                  A.comentario,
                   C.idproducto,
                   C.nombre
                   FROM pedidos A
@@ -120,6 +126,7 @@ class Pedido extends Model{
                   A.fk_idsucursal,
                   A.fk_idestadopedido,
                   A.metodo_pago,
+                  A.comentario,
                   B.idsucursal,
                   B.nombre
                   FROM pedidos A
@@ -132,13 +139,14 @@ class Pedido extends Model{
       public function guardar() {
 
             $sql = "UPDATE pedidos SET
-                  nombre='?',
-                  fecha='?',
-                  total='?',
-                  fk_idcliente='?',
-                  fk_idsucursal='?',
-                  fk_idestadopedido='?',
-                  metodo_pago='?'
+                  nombre = ?,
+                  fecha = ?,
+                  total = ?,
+                  fk_idcliente = ?,
+                  fk_idsucursal = ?,
+                  fk_idestadopedido = ?,
+                  metodo_pago = ?,
+                  comentario = ?
                   WHERE idpedido=?";
             $affected = DB::update($sql, [
                   $this->nombre,
@@ -148,6 +156,7 @@ class Pedido extends Model{
                   $this->fk_idsucursal,
                   $this->fk_idestadopedido,
                   $this->metodo_pago,
+                  $this->comentario,
                   $this->idpedido]);
 
       }
@@ -168,8 +177,9 @@ class Pedido extends Model{
                   fk_idcliente,
                   fk_idsucursal,
                   fk_idestadopedido,
-                  metodo_pago
-                  ) VALUES (?, ?, ?, ?, ?, ?, ?);";
+                  metodo_pago,
+                  comentario
+                  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
             $result = DB::insert($sql, [
                   $this->nombre,
                   $this->fecha,
@@ -178,6 +188,7 @@ class Pedido extends Model{
                   $this->fk_idsucursal,
                   $this->fk_idestadopedido,
                   $this->metodo_pago,
+                  $this->comentario,
             ]);
 
             $cliente = new Cliente();

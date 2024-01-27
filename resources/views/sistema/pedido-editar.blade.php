@@ -61,7 +61,7 @@
                               <label>Estado: </label>
                               <select name="lstEstadoPedido" id="lstEstadoPedido" class="form-control">
                                     <option value="" disabled>Seleccionar</option>
-                                    @foreach ($estados as $estado)
+                                    @foreach ($aEstados as $estado)
                                     <option value="{{$estado->idestadopedido}}" {{$pedido->fk_idestadopedido == $estado->idestadopedido ? 'selected' : ''}}>{{$estado->nombre}}</option>
                                     @endforeach
                               </select>
@@ -70,14 +70,15 @@
                         <div class="row">
                               <div class="form-group col-lg-6">
                                     <label>Comentarios: </label>
-                                    <textarea name="" id="" class="form-control" rows="3" readonly></textarea>
+                                    <textarea name="" id="" class="form-control" rows="3" readonly>{{$pedido->comentario}}</textarea>
                               </div>
                               <div class="form-group col-lg-6">
                                     <label>Metodo de Pago: </label>
                                     <select name="lstMetodoPago" id="lstMetodoPago" class="form-control">
-                                          <option value="" disabled>Seleccionar</option>
-                                          <option value="1" {{$pedido->metodo_pago == 1 ? 'selected' : ''}}>Efectivo</option>
-                                          <option value="2" {{$pedido->metodo_pago == 2 ? 'selected' : ''}}>MercadoPago</option>
+                                          <option value="" disabled>Seleccionar</option>}
+                                          @foreach ($metodos_pago as $metodoPago)
+                                          <option value="{{$metodoPago}}" <?php $pedido->metodo_pago == $metodoPago ? 'selected' : ''?>>{{$metodoPago}}</option>
+                                          @endforeach
                                     </select>
                               </div>
                         </div>
@@ -96,7 +97,7 @@
                               <th>Precio</th>
                         </thead>
                         <tbody>
-                              @foreach ($productos as $producto)
+                              @foreach ($aProductosPedido as $producto)
                               <tr>
                                     <td><img src="/files/{{$producto->imagen}}" alt="Imagen del producto" class="img-thumbnail" width="200px"></td>
                                     <td>{{$producto->nombre}}</td>
