@@ -52,8 +52,8 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-                Burger
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
+                BurgerHub
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,9 +94,13 @@ https://templatemo.com/tm-559-zay-shop
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="mi-cuenta">
-                        <i class="fa fa-fw fa-user text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                        <i class="fa fa-fw fa-user text-dark"></i>
                     </a>
+                    <?php if(Session::get('idcliente')!=""): ?>
+                    <a class="nav-icon position-relative text-decoration-none" href="logout">
+                        <i class="fa fa-fw fa-solid fa-arrow-right text-dark"></i>
+                    </a>
+                    <?php endif; ?>
                 </div>
             </div>
 
