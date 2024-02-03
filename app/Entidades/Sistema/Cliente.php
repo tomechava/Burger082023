@@ -204,6 +204,7 @@ class Cliente extends Model{
                   clave = ?
                   WHERE correo = '$correo'";
             $affected = DB::update($sql, [$claveNueva]);
+            return $affected;
       }
 
 }

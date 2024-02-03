@@ -26,12 +26,9 @@ class ControladorWebRecuperarClave extends Controller
                         $claveNueva .= substr($str, rand(0, 62), 1);
                   }
 
-                  $cliente->clave = $cliente->recuperarClave($correo, password_hash($claveNueva, PASSWORD_DEFAULT));
+                  if($cliente->recuperarClave($correo, password_hash($claveNueva, PASSWORD_DEFAULT))){
 
-                  if($cliente->guardar()){
-                        $msg["ESTADO"] = MSG_SUCCESS;
-                        $msg["MSG"] = "Se ha enviado un correo con la nueva contraseña.";
-                        return view('web.clave-nueva', compact('msg', 'claveNueva'));
+                        return view('web.clave-nueva', compact('claveNueva'));
                   } else {
                         $msg["ESTADO"] = MSG_ERROR;
                         $msg["MSG"] = "Ha ocurrido un error al intentar recuperar la contraseña. Intente nuevamente.";
