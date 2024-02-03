@@ -21,6 +21,7 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::post('/takeaway', 'ControladorWebTakeaway@agregarCarrito');
     Route::get('/nosotros', 'ControladorWebNosotros@index');
     Route::get('/contacto', 'ControladorWebContacto@index');
+    Route::post('/contacto', 'ControladorWebContacto@enviar');
     Route::get('/carrito', 'ControladorWebCarrito@index');
     Route::get('/mi-cuenta', 'ControladorWebMiCuenta@index');
     Route::post('/mi-cuenta', 'ControladorWebMiCuenta@guardar');
