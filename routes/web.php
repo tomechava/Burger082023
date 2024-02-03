@@ -27,6 +27,10 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::get('/login', 'ControladorWebLogin@index');
     Route::post('/login', 'ControladorWebLogin@ingresar');
     Route::get('/logout', 'ControladorWebLogout@salir');
+    Route::get('/registrarse', 'xxxxxxxxxxxxxxxxxxxxxxxxx@xxxxx');
+    Route::post('/registrarse', 'xxxxxxxxxxxxxxxxxxxxxxxxx@xxxxx');
+    Route::get('/recuperar-clave', 'ControladorWebRecuperarClave@index');
+    Route::post('/recuperar-clave', 'ControladorWebRecuperarClave@recuperar');
 
     Route::get('/admin', 'ControladorHome@index');
     Route::post('/admin/patente/nuevo', 'ControladorPatente@guardar');

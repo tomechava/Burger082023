@@ -48,12 +48,12 @@
                   </div>
                   <div class="row text-center">
                         <div class="col-12 mt-1">
-                              <a href="#" class="text-success">¿Olvidaste la clave?</a>
+                              <a href="recuperar-clave" class="text-success">¿Olvidaste la clave?</a>
                         </div>
                   </div>
                   <div class="row text-center">
                         <div class="col-12 mt-1">
-                              <a href="#" class="text-success">¿No tienes cuenta? Registrate</a>
+                              <a href="registrarse" class="text-success">¿No tienes cuenta? Registrate</a>
                         </div>
                   </div>
             </form>

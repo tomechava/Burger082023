@@ -136,67 +136,75 @@ class Cliente extends Model{
       }
 
       public function obtenerFiltrado()
-    {
-        $request = $_REQUEST;
-        $columns = array(
-            0 => 'A.idcliente',
-            1 => 'A.nombre',
-            2 => 'A.apellido',
-            3 => 'A.dni',
-            4 => 'A.correo',
-            5 => 'A.telefono'
-            );
-        $sql = "SELECT DISTINCT
-                    A.idcliente,
-                    A.nombre,
-                    A.apellido,
-                    A.correo,
-                    A.telefono,
-                    A.dni
-                    FROM clientes A
-                WHERE 1=1
-                ";
+      {
+            $request = $_REQUEST;
+            $columns = array(
+                  0 => 'A.idcliente',
+                  1 => 'A.nombre',
+                  2 => 'A.apellido',
+                  3 => 'A.dni',
+                  4 => 'A.correo',
+                  5 => 'A.telefono'
+                  );
+            $sql = "SELECT DISTINCT
+                        A.idcliente,
+                        A.nombre,
+                        A.apellido,
+                        A.correo,
+                        A.telefono,
+                        A.dni
+                        FROM clientes A
+                  WHERE 1=1
+                  ";
 
-        //Realiza el filtrado
-        if (!empty($request['search']['value'])) {
-            $sql .= " AND ( A.nombre LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR A.apellido LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR A.correo LIKE '%" . $request['search']['value'] . "%' )";
-            $sql .= " OR A.telefono LIKE '%" . $request['search']['value'] . "%' )";
-            $sql .= " OR A.dni LIKE '%" . $request['search']['value'] . "%' )";
-        }
-        $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
+            //Realiza el filtrado
+            if (!empty($request['search']['value'])) {
+                  $sql .= " AND ( A.nombre LIKE '%" . $request['search']['value'] . "%' ";
+                  $sql .= " OR A.apellido LIKE '%" . $request['search']['value'] . "%' ";
+                  $sql .= " OR A.correo LIKE '%" . $request['search']['value'] . "%' )";
+                  $sql .= " OR A.telefono LIKE '%" . $request['search']['value'] . "%' )";
+                  $sql .= " OR A.dni LIKE '%" . $request['search']['value'] . "%' )";
+            }
+            $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
 
-        $lstRetorno = DB::select($sql);
+            $lstRetorno = DB::select($sql);
 
-        return $lstRetorno;
-    }
+            return $lstRetorno;
+      }
       
-    public function obtenerPorCorreo($correo)
-    {
-        $sql = "SELECT
-              idcliente,
-              nombre,
-              apellido,
-              correo,
-              telefono,
-              dni,
-              clave
-              FROM clientes WHERE correo = '$correo'";
-        $lstRetorno = DB::select($sql);
-        
-        if (count($lstRetorno) > 0) {
-              $this->idcliente = $lstRetorno[0]->idcliente;
-              $this->nombre = $lstRetorno[0]->nombre;
-              $this->apellido = $lstRetorno[0]->apellido;
-              $this->correo = $lstRetorno[0]->correo;
-              $this->telefono = $lstRetorno[0]->telefono;
-              $this->dni = $lstRetorno[0]->dni;
-              $this->clave = $lstRetorno[0]->clave;
-              return $this;
-          }
-          return null;
-    }
+      public function obtenerPorCorreo($correo)
+      {
+            $sql = "SELECT
+                  idcliente,
+                  nombre,
+                  apellido,
+                  correo,
+                  telefono,
+                  dni,
+                  clave
+                  FROM clientes WHERE correo = '$correo'";
+            $lstRetorno = DB::select($sql);
+            
+            if (count($lstRetorno) > 0) {
+                  $this->idcliente = $lstRetorno[0]->idcliente;
+                  $this->nombre = $lstRetorno[0]->nombre;
+                  $this->apellido = $lstRetorno[0]->apellido;
+                  $this->correo = $lstRetorno[0]->correo;
+                  $this->telefono = $lstRetorno[0]->telefono;
+                  $this->dni = $lstRetorno[0]->dni;
+                  $this->clave = $lstRetorno[0]->clave;
+                  return $this;
+            }
+            return null;
+      }
+
+      public function recuperarClave($correo, $claveNueva)
+      {
+            $sql = "UPDATE clientes SET
+                  clave = ?
+                  WHERE correo = '$correo'";
+            $affected = DB::update($sql, [$claveNueva]);
+      }
 
 }
 
