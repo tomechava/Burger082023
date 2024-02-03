@@ -8,6 +8,6 @@ class ControladorWebCarrito extends Controller
 {
     public function index()
     {
-            return view('web.carrito');
+        return view('web.carrito');
     }
 }
