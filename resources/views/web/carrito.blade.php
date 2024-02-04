@@ -11,7 +11,7 @@
       </div>
       <div class="row my-5">
             <div class="col-12">
-                  <table class="table table-light my-5">
+                  <table class="table table-light table-hover table-borderless border my-5">
                         <thead>
                               <tr>
                                     <th>Imagen</th>
@@ -32,7 +32,7 @@
                                     <td>{{$producto->cantidad}}</td>
                                     <td>${{number_format($producto->precio * $producto->cantidad, 2, ",", ".")}}</td>
                                     <td>
-                                          <a href="#" class="btn btn-danger">Eliminar</a>
+                                          <a href="#" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
                                     </td>
                               </tr>
                               <?php $total += $producto->precio * $producto->cantidad;?>
