@@ -20,6 +20,8 @@ class ControladorWebRegistrarse extends Controller
             $cliente->cargarDesdeRequest($request);
             $cliente->insertar();
 
+            $this->generarCarrito($cliente->idcliente);
+
             $msg["ESTADO"] = "success";
             $msg["MSG"] = "Se ha registrado correctamente";
             return view('web.registrarse', compact('msg'));
@@ -30,5 +32,12 @@ class ControladorWebRegistrarse extends Controller
             $request->session()->put("msg", $msg);
             return view('web.registrarse', compact('msg'));
         }
+    }
+
+    private function generarCarrito($idCliente)
+    {
+        $carrito = new Carrito();
+        $carrito->fk_idcliente = $idCliente;
+        $carrito->insertar();
     }
 }

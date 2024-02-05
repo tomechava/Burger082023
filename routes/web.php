@@ -18,7 +18,7 @@ Route::group(array('domain' => '127.0.0.1'), function () {
 
     Route::get('/', 'ControladorWebHome@index');
     Route::get('/takeaway', 'ControladorWebTakeaway@index');
-    Route::post('/takeaway', 'ControladorWebTakeaway@agregarCarrito');
+    Route::post('/takeaway', 'ControladorWebTakeaway@agregar');
     Route::get('/nosotros', 'ControladorWebNosotros@index');
     Route::get('/contacto', 'ControladorWebContacto@index');
     Route::post('/contacto', 'ControladorWebContacto@enviar');
@@ -33,6 +33,8 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::get('/recuperar-clave', 'ControladorWebRecuperarClave@index');
     Route::post('/recuperar-clave', 'ControladorWebRecuperarClave@recuperar');
     Route::get('/clave-nueva', 'ControladorWebClaveNueva@index');
+    //Route::get('/takeaway-producto/{id}', 'ControladorWebTakeawayProducto@ver');
+    //Route::post('/takeaway-producto/{id}', 'ControladorWebTakeawayProducto@agregar');
 
     Route::get('/admin', 'ControladorHome@index');
     Route::post('/admin/patente/nuevo', 'ControladorPatente@guardar');

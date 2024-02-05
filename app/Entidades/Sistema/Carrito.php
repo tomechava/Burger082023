@@ -81,13 +81,20 @@ class Carrito extends Model{
       }
 
       public function obtenerPorCliente($idCliente)
-      {
+      {     
+            
             $sql = "SELECT 
-                        A.idcarrito,
-                        A.fk_idcliente
-                  FROM carritos A WHERE A.fk_idcliente = '$idCliente'";
+                        idcarrito,
+                        fk_idcliente
+                  FROM carritos WHERE fk_idcliente = $idCliente";
             $lstRetorno = DB::select($sql);
-            return $lstRetorno;
+            
+            if(count($lstRetorno) > 0){
+                  $this->idcarrito = $lstRetorno[0]->idcarrito;
+                  $this->fk_idcliente = $lstRetorno[0]->fk_idcliente;
+                  return $this;
+            }
+            return null;
       }
 
 

@@ -16,13 +16,12 @@ class ControladorWebCarrito extends Controller
         $idCliente = Session::get('idcliente');
         $carrito = new Carrito();
         
-        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+        $carrito->obtenerPorCliente($idCliente);
         
         $productoCarrito = new ProductoCarrito();
         $productos = array();
-        foreach($aCarritos as $carrito){
-            $productos = $productoCarrito->obtenerPorCarrito($carrito->idcarrito);
-        }
+        $productos = $productoCarrito->obtenerPorCarrito($carrito->idcarrito);
+        
 
         return view('web.carrito', compact('productos'));
     }

@@ -114,6 +114,21 @@ class ProductoCarrito extends Model{
             return $lstRetorno;
       }
 
+      public function agregarAlCarrito($idCarrito, $idProducto, $cantidad)
+      {
+            $sql = "INSERT INTO productos_carritos (
+                  fk_idcarrito,
+                  fk_idproducto,
+                  cantidad
+                  ) VALUES (?, ?, ?);";
+            $result = DB::insert($sql, [
+                  $idCarrito,
+                  $idProducto,
+                  $cantidad
+            ]);
+            return $this->idproductocarrito = DB::getPdo()->lastInsertId();
+
+      }
 }
 
 ?>
