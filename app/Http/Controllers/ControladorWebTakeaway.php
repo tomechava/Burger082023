@@ -31,8 +31,13 @@ class ControladorWebTakeaway extends Controller
             $carrito->obtenerPorCliente($idCliente); //obtengo el carrito del cliente logueado
 
             $productoCarrito = new ProductoCarrito();
-            $productoCarrito->agregarAlCarrito($carrito->idcarrito, $idProducto, $cantidad); //agrego el producto al carrito
-            
+            if($productoCarrito->verificarProductoEnCarrito($carrito->idcarrito, $idProducto)) //verifico si el producto ya esta en el carrito
+            {
+                $productoCarrito->sumarCantidad($carrito->idcarrito,  $cantidad, $idProducto); //actualizo la cantidad del producto en el carrito
+            }else{
+                $productoCarrito->agregarAlCarrito($carrito->idcarrito, $idProducto, $cantidad); //agrego el producto al carrito
+            }
+
             $msg["ESTADO"] = "success";
             $msg["MSG"] = "Producto agregado al carrito";
 

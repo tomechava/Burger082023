@@ -129,6 +129,34 @@ class ProductoCarrito extends Model{
             return $this->idproductocarrito = DB::getPdo()->lastInsertId();
 
       }
+
+      public function verificarProductoEnCarrito($idCarrito, $idProducto)
+      {
+            $sql = "SELECT 
+                        A.idproductocarrito,
+                        A.fk_idcarrito,
+                        A.fk_idproducto,
+                        A.cantidad
+                  FROM productos_carritos A
+                  WHERE A.fk_idcarrito = '$idCarrito' AND A.fk_idproducto = '$idProducto'";
+            $lstRetorno = DB::select($sql);
+            if(count($lstRetorno) > 0){
+                  return true;
+            }
+            return false;
+      }
+
+      public function sumarCantidad($idCarrito, $cantidad, $idProducto)
+      {
+            $sql = "UPDATE productos_carritos SET
+                  cantidad = cantidad + ?
+                  WHERE fk_idcarrito = ? AND fk_idproducto = ?";
+            $affected = DB::update($sql, [
+                  $cantidad,
+                  $idCarrito,
+                  $idProducto]);
+      }
+      
 }
 
 ?>
