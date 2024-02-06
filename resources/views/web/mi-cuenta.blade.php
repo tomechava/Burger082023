@@ -82,7 +82,7 @@
                                     <td>{{$pedido->idpedido}}</td>
                                     <td>{{$pedido->fecha}}</td>
                                     <td>{{$pedido->nombreSucursal}}</td>
-                                    <td>{{$pedido->total}}</td>
+                                    <td>${{number_format($pedido->total, 2, ",", ".")}}</td>
                                     <td>{{$pedido->nombreEstado}}</td>
                                     <td>
                                           <a href="#" class="btn btn-primary">Ver</a>
