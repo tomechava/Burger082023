@@ -15,7 +15,7 @@
 </div>
 
 <!-- Start Contact -->
-<div class="container-fluid bg-light shadow rounded pt-1 pb-1">
+<div class="container-fluid bg-light rounded pt-1 pb-1">
       <div class="row py-5">
             <form class="col-md-9 m-auto" method="POST" id="form1">
                   <div class="row">
@@ -60,6 +60,38 @@
                         </div>
                   </div>
             </form>
+      </div>
+</div>
+<div class="container">
+      <div class="row my-5 py-5">
+            <div class="col-12">
+                  <table class="table">
+                        <thead>
+                              <tr>
+                                    <th class="h3">Nro. Pedido</th>
+                                    <th class="h3">Fecha</th>
+                                    <th class="h3">Sucursal</th>
+                                    <th class="h3">Total</th>
+                                    <th class="h3">Estado</th>
+                                    <th class="h3">Acciones</th>
+                              </th>
+                        </thead>
+                        <tbody>
+                              @foreach($pedidos as $pedido)
+                              <tr>
+                                    <td>{{$pedido->idpedido}}</td>
+                                    <td>{{$pedido->fecha}}</td>
+                                    <td>{{$pedido->nombreSucursal}}</td>
+                                    <td>{{$pedido->total}}</td>
+                                    <td>{{$pedido->nombreEstado}}</td>
+                                    <td>
+                                          <a href="#" class="btn btn-primary">Ver</a>
+                                    </td>
+                              </tr>
+                              @endforeach
+                        </tbody>
+                  </table>
+            </div>
       </div>
 </div>
 <script>

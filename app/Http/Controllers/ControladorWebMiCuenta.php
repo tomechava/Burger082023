@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entidades\Sistema\Cliente;
+use App\Entidades\Sistema\Pedido;
 use Session;
 require app_path() . '/start/constants.php';
 
@@ -14,7 +15,11 @@ class ControladorWebMiCuenta extends Controller
             $id = Session::get('idcliente');
             $cliente = new Cliente();
             $cliente->obtenerPorId($id);
-            return view('web.mi-cuenta', compact('cliente'));
+
+            $pedido = new Pedido();
+            $pedidos = $pedido->obtenerPorCliente($id);
+
+            return view('web.mi-cuenta', compact('cliente', 'pedidos'));
         } else {
             return redirect('/login');
         }
