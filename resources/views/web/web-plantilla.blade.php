@@ -91,7 +91,7 @@ https://templatemo.com/tm-559-zay-shop
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="carrito">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                        <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span> -->
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="mi-cuenta">
                         <i class="fa fa-fw fa-user text-dark"></i>
