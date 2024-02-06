@@ -85,7 +85,7 @@
                                     <td>${{number_format($pedido->total, 2, ",", ".")}}</td>
                                     <td>{{$pedido->nombreEstado}}</td>
                                     <td>
-                                          <a href="#" class="btn btn-primary">Ver</a>
+                                          <a href="/pedido?id={{$pedido->idpedido}}" class="btn btn-success">Ver</a>
                                     </td>
                               </tr>
                               @endforeach

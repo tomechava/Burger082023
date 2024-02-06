@@ -87,6 +87,7 @@ class Pedido extends Model{
                   A.total,
                   A.fk_idcliente,
                   B.nombre as nombreCliente,
+                  B.apellido as apellidoCliente,
                   A.fk_idsucursal,
                   C.nombre as nombreSucursal,
                   A.fk_idestadopedido,
@@ -97,10 +98,12 @@ class Pedido extends Model{
                   INNER JOIN clientes B ON A.fk_idcliente = B.idcliente
                   INNER JOIN sucursales C ON A.fk_idsucursal = C.idsucursal
                   INNER JOIN estados_pedidos D ON A.fk_idestadopedido = D.idestadopedido
-                  WHERE fk_idcliente = $idCliente";
+                  WHERE A.fk_idcliente = $idCliente";
             $lstRetorno = DB::select($sql);
+
             return $lstRetorno;
       }
+
 
       public function obtenerPorProducto($idProducto)
       {
