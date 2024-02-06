@@ -13,6 +13,7 @@ class ControladorWebCarrito extends Controller
 {
     public function index()
     {   
+        if(Session::get('idcliente')>0){ //verifico si el cliente esta logueado
         $idCliente = Session::get('idcliente');
         $carrito = new Carrito();
         
@@ -24,5 +25,22 @@ class ControladorWebCarrito extends Controller
         
 
         return view('web.carrito', compact('productos'));
+        }else{
+            return redirect('/login');
+        }
+    }
+
+    public function eliminar()
+    {   
+        $idCliente = Session::get('idcliente');
+        $idProducto = $_GET["id"];
+
+        $carrito = new Carrito();
+        $carrito->obtenerPorCliente($idCliente);
+        $idCarrito = $carrito->idcarrito;
+
+        $productoCarrito = new ProductoCarrito();
+        $productoCarrito->eliminarProducto($idCarrito, $idProducto);
+        return redirect('/carrito');
     }
 }

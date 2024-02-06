@@ -84,6 +84,7 @@ class ProductoCarrito extends Model{
                         A.fk_idproducto,
                         A.cantidad
                         FROM productos_carritos A WHERE A.idproductocarrito = '$idProductoCarrito'";
+            $lstRetorno = DB::select($sql);
             if(count($lstRetorno) > 0){
                   $this->idproductocarrito = $lstRetorno[0]->idproductocarrito;
                   $this->fk_idcarrito = $lstRetorno[0]->fk_idcarrito;
@@ -155,6 +156,13 @@ class ProductoCarrito extends Model{
                   $cantidad,
                   $idCarrito,
                   $idProducto]);
+      }
+
+      public function eliminarProducto($idCarrito, $idProducto)
+      {
+            $sql = "DELETE FROM productos_carritos WHERE
+                  fk_idcarrito=? AND fk_idproducto=?";
+            $affected = DB::delete($sql, [$idCarrito, $idProducto]);
       }
       
 }

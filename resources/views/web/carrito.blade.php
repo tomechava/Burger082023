@@ -31,8 +31,8 @@
                                     <td>${{number_format($producto->precio, 2, ",", ".")}}</td>
                                     <td>{{$producto->cantidad}}</td>
                                     <td>${{number_format($producto->precio * $producto->cantidad, 2, ",", ".")}}</td>
-                                    <td>
-                                          <a href="#" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
+                                    <td>  
+                                          <a href="carrito/eliminar?id={{$producto->idproducto}}" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
                                     </td>
                               </tr>
                               <?php $total += $producto->precio * $producto->cantidad;?>
