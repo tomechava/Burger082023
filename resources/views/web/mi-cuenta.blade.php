@@ -58,13 +58,18 @@
                         <div class="form-group col-12 mt-3 text-center">
                               <button type="submit " class="btn btn-success h3">Guardar</button>
                         </div>
+                        <div class="form-group col-12 text-center">
+                              <a href="#" class="btn h3 text-right text-success">¿Cambiar contraseña?</a>
+                        </div>
                   </div>
             </form>
       </div>
 </div>
 <div class="container">
-      <div class="row my-5 py-5">
+      <div class="row my-5">
             <div class="col-12">
+                  <h2 class="h2 mb-5">Pedidos</h2>
+                  @if(count($pedidos) > 0)
                   <table class="table">
                         <thead>
                               <tr>
@@ -91,6 +96,9 @@
                               @endforeach
                         </tbody>
                   </table>
+                  @else
+                  <p>No tiene pedidos realizados.</p>
+                  @endif
             </div>
       </div>
 </div>

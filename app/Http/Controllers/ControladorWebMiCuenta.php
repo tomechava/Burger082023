@@ -31,6 +31,7 @@ class ControladorWebMiCuenta extends Controller
         && trim($request->input('txtApellido')) != "" 
         && trim($request->input('txtCorreo')) != "" 
         && trim($request->input('txtTelefono')) != ""){
+
             $cliente = new Cliente();
             $cliente->obtenerPorId(Session::get('idcliente'));
             $cliente->nombre = $request->input('txtNombre');
@@ -38,17 +39,24 @@ class ControladorWebMiCuenta extends Controller
             $cliente->correo = $request->input('txtCorreo');
             $cliente->telefono = $request->input('txtTelefono');
             $cliente->guardar();
+
+            $pedido = new Pedido();
+            $pedidos = $pedido->obtenerPorCliente($cliente->idcliente);
+
             $msg["ESTADO"] = MSG_SUCCESS;
             $msg["MSG"] = "Datos guardados correctamente";
-            return view('web.mi-cuenta', compact('msg', 'cliente'));
+            return view('web.mi-cuenta', compact('msg', 'cliente', 'pedidos'));
         } else {
             $cliente = new Cliente();
             $cliente->obtenerPorId(Session::get('idcliente'));
 
+            $pedido = new Pedido();
+            $pedidos = $pedido->obtenerPorCliente($cliente->idcliente);
+
             $msg["ESTADO"] = MSG_ERROR;
             $msg["MSG"] = "Complete todos los campos";
 
-            return view('web.mi-cuenta', compact('msg', 'cliente'));
+            return view('web.mi-cuenta', compact('msg', 'cliente', 'pedidos'));
         }
     }
 }
