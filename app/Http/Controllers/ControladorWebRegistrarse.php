@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Entidades\Sistema\Cliente;
+use App\Entidades\Sistema\Carrito;
 require app_path() . '/start/constants.php';
 
 class ControladorWebRegistrarse extends Controller
@@ -40,4 +41,5 @@ class ControladorWebRegistrarse extends Controller
         $carrito->fk_idcliente = $idCliente;
         $carrito->insertar();
     }
+
 }
