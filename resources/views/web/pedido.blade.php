@@ -88,7 +88,7 @@
       </div>
       <div class="row mb-5">
             <div class="col-12 text-center">
-                  <a href="/mi-cuenta" class="btn btn-success"><i class="fa fa-fw fa-solid fa-arrow-left"></i> Volver</a>
+                  <a href="/mi-cuenta" class="btn btn-orange-intense"><i class="fa fa-fw fa-solid fa-arrow-left"></i> Volver</a>
             </div>
       </div>
 </div>

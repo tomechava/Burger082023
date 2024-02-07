@@ -38,8 +38,8 @@
                                     <img class="card-img rounded-0 img-fluid" src="files/{{$producto->imagen}}">
                                     <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                         <ul class="list-unstyled">
-                                            <li><a class="btn btn-success text-white mt-2" href="takeaway-producto/{{$producto->idproducto}}"><i class="far fa-eye"></i></a></li>
-                                            <li><button type="submit" class="btn btn-success my-3"><i class="fas fa-cart-plus"></i></button></li>
+                                            <li><a class="btn btn-orange-intense text-white mt-2" href="takeaway-producto/{{$producto->idproducto}}"><i class="far fa-eye"></i></a></li>
+                                            <li><button type="submit" class="btn btn-orange-intense my-3"><i class="fas fa-cart-plus"></i></button></li>
                                         </ul>
                                     </div>
                                 </div>

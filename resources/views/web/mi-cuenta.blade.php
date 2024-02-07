@@ -56,10 +56,10 @@
                   </div>
                   <div class="row">
                         <div class="form-group col-12 mt-3 text-center">
-                              <button type="submit " class="btn btn-success h3">Guardar</button>
+                              <button type="submit " class="btn btn-orange-intense h3">Guardar</button>
                         </div>
                         <div class="form-group col-12 text-center">
-                              <a href="#" class="btn h3 text-right text-success">¿Cambiar contraseña?</a>
+                              <a href="#" class="btn h3 text-right text-orange-vibrant">¿Cambiar contraseña?</a>
                         </div>
                   </div>
             </form>
@@ -90,7 +90,7 @@
                                     <td>${{number_format($pedido->total, 2, ",", ".")}}</td>
                                     <td>{{$pedido->nombreEstado}}</td>
                                     <td>
-                                          <a href="/pedido?id={{$pedido->idpedido}}" class="btn btn-success">Ver</a>
+                                          <a href="/pedido?id={{$pedido->idpedido}}" class="btn btn-orange-intense">Ver</a>
                                     </td>
                               </tr>
                               @endforeach

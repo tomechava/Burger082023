@@ -20,7 +20,7 @@
                               <input type="text" class="form-control" id="txtCorreo" name="txtCorreo">
                         </div>
                         <div class="form-group text-center mt-5">
-                              <button type="submit" class="btn btn-success">Recuperar contraseña</button>
+                              <button type="submit" class="btn btn-orange-intense">Recuperar contraseña</button>
                         </div>
                   </form>
                   <div class="row">

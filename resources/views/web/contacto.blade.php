@@ -59,7 +59,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-3 text-right">
-                        <button type="submit" class="btn btn-success">Enviar</button>
+                        <button type="submit" class="btn btn-orange-intense">Enviar</button>
                     </div>
                 </div>
             </form>

@@ -43,7 +43,7 @@
                                     <td colspan="3" class="text-right">Total</td>
                                     <td>${{number_format($total, 2, ",", ".")}}</td>
                                     <td>
-                                          <a href="#" class="btn btn-success">Pagar</a>
+                                          <a href="#" class="btn btn-orange-intense">Pagar</a>
                                     </td>
                               </tr>
                         </tfoot>

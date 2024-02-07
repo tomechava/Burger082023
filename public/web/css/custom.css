@@ -1,3 +1,99 @@
 /*
 Custom Css
 */
+.text-orange-intense{
+      color:#FF8C42 !important;     
+}
+.text-orange-vibrant{
+      color:#FF5733 !important;
+}
+.text-orange-regular{
+      color:#FF6C40 !important;
+}
+.text-gray-dark{
+      color:#333333 !important;
+}
+.text-gray-neutral{
+      color:#707070 !important;
+}
+.text-black-dark{
+      color:#1A1A1A !important;
+}
+.text-orange-intense:hover{
+      color:#FF5733 !important;
+}
+.text-orange-vibrant:hover{
+      color:#FF6C40 !important;
+}
+.text-orange-regular:hover{
+      color:#FF8C42 !important;
+}
+.text-gray-dark:hover{
+      color:#707070 !important;
+}
+.text-gray-neutral:hover{
+      color:#333333 !important;
+}
+.text-black-dark:hover{
+      color:#1A1A1A !important;
+}
+.btn-orange-intense{
+      background-color:#FF8C42 !important;
+      border-color:#FF8C42 !important;
+      color: #fff !important
+}
+.btn-orange-vibrant{
+      background-color:#FF5733 !important;
+      border-color:#FF5733 !important;
+      color: #fff !important
+}
+.btn-orange-regular{
+      background-color:#FF6C40 !important;
+      border-color:#FF6C40 !important;
+      color: #fff !important
+}
+.btn-gray-dark{
+      background-color:#333333 !important;
+      border-color:#333333 !important;
+      color: #fff !important
+}
+.btn-gray-neutral{
+      background-color:#707070 !important;
+      border-color:#707070 !important;
+      color: #fff !important
+}
+.btn-black-dark{
+      background-color:#1A1A1A !important;
+      border-color:#1A1A1A !important;
+      color: #fff !important
+}
+.btn-orange-intense:hover{
+      background-color:#FF5733 !important;
+      border-color:#FF5733 !important;
+      color: #fff !important
+}
+.btn-orange-vibrant:hover{
+      background-color:#FF6C40 !important;
+      border-color:#FF6C40 !important;
+      color: #fff !important
+}
+.btn-orange-regular:hover{
+      background-color:#FF8C42 !important;
+      border-color:#FF8C42 !important;
+      color: #fff !important
+}
+.btn-gray-dark:hover{
+      background-color:#707070 !important;
+      border-color:#707070 !important;
+      color: #fff !important
+}
+.btn-gray-neutral:hover{
+      background-color:#333333 !important;
+      border-color:#333333 !important;
+      color: #fff !important
+}
+.btn-black-dark:hover{
+      background-color:#1A1A1A !important;
+      border-color:#1A1A1A !important;
+      color: #fff !important
+}

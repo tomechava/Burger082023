@@ -43,17 +43,17 @@
                   </div>
                   <div class="row">
                         <div class="form-group col-12 mt-3 text-center">
-                            <button type="submit " class="btn btn-success">Ingresar</button>
+                            <button type="submit " class="btn btn-orange-intense">Ingresar</button>
                         </div>
                   </div>
                   <div class="row text-center">
                         <div class="col-12 mt-1">
-                              <a href="recuperar-clave" class="text-success">¿Olvidaste la clave?</a>
+                              <a href="recuperar-clave" class="text-orange-vibrant">¿Olvidaste la clave?</a>
                         </div>
                   </div>
                   <div class="row text-center">
                         <div class="col-12 mt-1">
-                              <a href="registrarse" class="text-success">¿No tienes cuenta? Registrate</a>
+                              <a href="registrarse" class="text-orange-vibrant">¿No tienes cuenta? Registrate</a>
                         </div>
                   </div>
             </form>

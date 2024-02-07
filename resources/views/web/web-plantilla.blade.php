@@ -52,7 +52,7 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
+            <a class="navbar-brand text-orange-vibrant logo h1 align-self-center" href="/">
                 BurgerHub
             </a>
 
@@ -135,7 +135,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
+                    <h2 class="h2 text-orange-vibrant border-bottom pb-3 border-light logo">Zay Shop</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -202,7 +202,7 @@ https://templatemo.com/tm-559-zay-shop
                     <label class="sr-only" for="subscribeEmail">Email address</label>
                     <div class="input-group mb-2">
                         <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
-                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                        <div class="input-group-text btn-orange-intense text-light">Subscribe</div>
                     </div>
                 </div>
             </div>
