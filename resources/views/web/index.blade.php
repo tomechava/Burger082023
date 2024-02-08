@@ -1,47 +1,42 @@
 @extends("web.web-plantilla")
 @section("contenido")
 <!-- Start Banner Hero -->
-<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+<div id="template-mo-zay-hero-carousel" class="carousel slide my-5" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active bg-orange-vibrant"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1" class="bg-orange-vibrant"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2" class="bg-orange-vibrant"></li>
         </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active text-white">
+        <div class="carousel-inner bg-black-dark">
+            <div class="carousel-item active text-white bg-black-dark">
                 <div class="container">
-                    <div class="carousel-overlay">
-                        <img class="img-fluid d-block w-100 carousel-bg-image" src="web/images/grill.jpg" alt="">
-                        <div class="carousel-caption">
-                            <div class="row p-5">
-                                <div class="col-lg-6 mb-0 d-flex align-items-center">
-                                    <div class="text-align-left align-self-center">
-                                        <h1 class="h1 text-orange-vibrant"><b>Burger</b>Hub</h1>
-                                        <h3 class="h2">Sabor auténtico</h3>
-                                        <p>
-                                        Sumérgete en una explosión de sabores con nuestras hamburguesas artesanales, 
-                                        preparadas con ingredientes frescos y auténticos, que deleitarán tus papilas 
-                                        gustativas desde el primer bocado.
-                                        </p>
-                                    </div>
-                                </div>
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid rounded shadow" src="web/images/grill.jpg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1 text-orange-vibrant">Sabor y calidad</h1>
+                                <p>
+                                En BurgerHub, nos enorgullecemos de ofrecer una experiencia gastronómica 
+                                excepcional que deleitará tus sentidos. Nuestras hamburguesas, preparadas 
+                                con ingredientes frescos y de la más alta calidad, son una delicia para el 
+                                paladar y una experiencia que no olvidarás.
+                                </p>
                             </div>
                         </div>
-                        
                     </div>
-                    
                 </div>
             </div>
             <div class="carousel-item bg-black-dark text-white">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="web/images/triple.png" alt="">
+                            <img class="img-fluid rounded shadow" src="web/images/triple.png" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1 text-orange-vibrant"><b>Burger</b>Hub</h1>
-                                <h3 class="h2">Velocidad y conveniencia</h3>
+                                <h1 class="h1 text-orange-vibrant">Velocidad y conveniencia </h1>
                                 <p>
                                 Disfruta de la comodidad sin precedentes con nuestro servicio de comida 
                                 para llevar. Con solo unos clics, tendrás nuestras deliciosas hamburguesas 
@@ -57,12 +52,11 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="web/img/banner_img_03.jpg" alt="">
+                            <img class="img-fluid rounded shadow" src="web/images/image_11.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1 text-orange-vibrant"><b>Burger</b>Hub</h1>
-                                <h3 class="h2">Pasión por la calidad</h3>
+                                <h1 class="h1 text-orange-vibrant">Pasión por la calidad </h1>
                                 <p>
                                 En BurgerHub, nuestra pasión por la calidad se refleja en cada detalle. 
                                 Desde la cuidadosa selección de los ingredientes hasta la meticulosa 
@@ -75,10 +69,10 @@
             </div>
         </div>
         <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
-            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-solid fa-chevron-left" style="color: #ff5733 !important;"></i>
         </a>
         <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
-            <i class="fas fa-chevron-right"></i>
+            <i class="fas fa-solid fa-chevron-right" style="color: #ff5733 !important;"></i>
         </a>
     </div>
     <!-- End Banner Hero -->
