@@ -4,20 +4,20 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-9 m-auto">
-                <div class="row border mb-3">
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu mb-3 pt-3">
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Todos</a>
+                                <a class="h3 text-light text-decoration-none mr-3" href="#">Todos</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Burgers</a>
+                                <a class="h3 text-light text-decoration-none mr-3" href="#">Burgers</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Papas</a>
+                                <a class="h3 text-light text-decoration-none mr-3" href="#">Papas</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" href="#">Bebidas</a>
+                                <a class="h3 text-light text-decoration-none" href="#">Bebidas</a>
                             </li>
                         </ul>
                     </div>
@@ -32,9 +32,9 @@
                 <div class="row">
                     @foreach($aProductos as $producto)
                     <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
+                        <div class="card mb-4 product-wap rounded-0 card-color-black">
                             <form method="POST" id="form1">
-                                <div class="card rounded-0">
+                                <div class="card rounded-0 border-black">
                                     <img class="card-img rounded-0 img-fluid" src="files/{{$producto->imagen}}">
                                     <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                         <ul class="list-unstyled">
@@ -43,9 +43,9 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="card-body d-block">
-                                    <a href="#" class="h2 d-block">{{$producto->nombre}}</a>
-                                    <p class="text-right mb-3">${{number_format($producto->precio, 2, ",", ".")}}</p>
+                                <div class="card-body d-block text-light">
+                                    <a href="#" class="h2 text-light d-block">{{$producto->nombre}}</a>
+                                    <p class="text-right mb-3">${{number_format($producto->precio, 0, ",", ".")}}</p>
                                     
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                                     <input type="hidden" name="txtIdProducto" id="txtIdProducto" value="{{$producto->idproducto}}">
@@ -54,7 +54,7 @@
                                             <label for="txtCantidad" class="form-label">Cantidad:</label>
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="form-control" name="txtCantidad" id="txtCantidad" placeholder="1" required>
+                                            <input type="number" class="form-control bg-dark" name="txtCantidad" id="txtCantidad" placeholder="1" required>
                                         </div>
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@
 @section("contenido")
 
 <!-- Start Content Page -->
-<div class="container-fluid py-5">
+<div class="container-fluid py-5 text-white">
       <div class="col-md-6 m-auto text-center">
       <h1 class="h1">Mi cuenta</h1>
       </div>
@@ -66,7 +66,7 @@
       </div>
 </div>
 <div class="container">
-      <div class="row my-5">
+      <div class="row my-5 text-white">
             <div class="col-12">
                   <h2 class="h2 mb-5">Pedidos</h2>
                   @if(count($pedidos) > 0)

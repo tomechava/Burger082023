@@ -47,6 +47,9 @@ body {
 .text-black-dark:hover{
       color:#1A1A1A !important;
 }
+.text-white:hover{
+      color:#dbdbdb !important;
+}
 .btn-orange-intense{
       background-color:#FF8C42 !important;
       border-color:#FF8C42 !important;
@@ -145,4 +148,11 @@ body {
       background-color: rgba(0, 0, 0, 0.5) !important;
       color: white !important;
       padding: 20px !important;
+}
+.card-color-black{
+      background-color:#1A1A1A !important;
+      color: #fff !important
+}
+.border-black{
+      border: #1A1A1A !important;
 }
