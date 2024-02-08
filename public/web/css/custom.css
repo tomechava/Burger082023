@@ -1,6 +1,13 @@
 /*
 Custom Css
 */
+body {
+      background-image: url('../images/m12.jpg') !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+}
 .text-orange-intense{
       color:#FF8C42 !important;     
 }
@@ -18,6 +25,9 @@ Custom Css
 }
 .text-black-dark{
       color:#1A1A1A !important;
+}
+.text-white{
+      color:#fff !important;
 }
 .text-orange-intense:hover{
       color:#FF5733 !important;
@@ -96,4 +106,39 @@ Custom Css
       background-color:#1A1A1A !important;
       border-color:#1A1A1A !important;
       color: #fff !important
+}
+.bg-orange-intense{
+      background-color:#FF8C42 !important;
+}
+.bg-orange-vibrant{
+      background-color:#FF5733 !important;
+}
+.bg-orange-regular{
+      background-color:#FF6C40 !important;
+}
+.bg-gray-dark{
+      background-color:#333333 !important;
+}
+.bg-gray-neutral{
+      background-color:#707070 !important;
+}
+.bg-black-dark{
+      background-color:#1A1A1A !important;
+}
+.carousel-overlay {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      
+}
+.carousel-caption {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      background-color: rgba(0, 0, 0, 0.5) !important;
+      color: white !important;
+      padding: 20px !important;
 }
