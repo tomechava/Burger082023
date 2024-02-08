@@ -132,6 +132,9 @@ body {
       background-color:rgba(0, 0, 0, 0.2) !important;
       
 }
+.bg-none{
+      background-color:transparent !important;
+}
 .carousel-overlay {
       position: relative;
       width: 100%;

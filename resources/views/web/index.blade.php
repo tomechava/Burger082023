@@ -1,14 +1,14 @@
 @extends("web.web-plantilla")
 @section("contenido")
 <!-- Start Banner Hero -->
-<div id="template-mo-zay-hero-carousel" class="carousel slide my-5" data-bs-ride="carousel">
+<div id="template-mo-zay-hero-carousel" class="carousel slide my-5 bg-tinted-windows" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active bg-orange-vibrant"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1" class="bg-orange-vibrant"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2" class="bg-orange-vibrant"></li>
         </ol>
-        <div class="carousel-inner bg-black-dark">
-            <div class="carousel-item active text-white bg-black-dark">
+        <div class="carousel-inner">
+            <div class="carousel-item active text-white">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item bg-black-dark text-white">
+            <div class="carousel-item text-white ">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item bg-black-dark text-white">
+            <div class="carousel-item text-white">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
