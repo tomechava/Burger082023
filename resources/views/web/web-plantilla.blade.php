@@ -93,7 +93,7 @@ https://templatemo.com/tm-559-zay-shop
                     <a class="nav-icon position-relative text-decoration-none" href="mi-cuenta">
                         <i class="fa fa-fw fa-user text-orange-vibrant"></i>
                     </a>
-                    <?php if(Session::get('idcliente')!=""): ?>
+                    <?php if(Session::get('idcliente')>0): ?>
                     <a class="nav-icon position-relative text-decoration-none" href="logout">
                         <i class="fa fa-fw fa-solid fa-arrow-right text-orange-vibrant"></i>
                     </a>
