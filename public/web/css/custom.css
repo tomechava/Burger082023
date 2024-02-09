@@ -132,6 +132,9 @@ body {
       background-color:rgba(0, 0, 0, 0.2) !important;
       
 }
+.bg-tinted-heavy{
+      background-color:rgba(0, 0, 0, 0.7) !important;
+}
 .bg-none{
       background-color:transparent !important;
 }

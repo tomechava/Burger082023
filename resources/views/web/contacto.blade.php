@@ -1,7 +1,7 @@
 @extends("web.web-plantilla")
 @section("contenido")
     <!-- Start Content Page -->
-    <div class="container-fluid bg-light py-5">
+    <div class="container-fluid bg-black-dark text-light py-5">
         <div class="col-md-6 m-auto text-center">
             <h1 class="h1">Contacto</h1>
             <p>
@@ -12,7 +12,7 @@
 
     <!-- Start Contact -->
     <div class="container py-5">
-        <div class="row py-5">
+        <div class="row py-5 text-light bg-tinted-heavy rounded shadow">
             <form class="col-md-9 m-auto" method="POST" id="form1" enctype="multipart/form-data">
                 @if (isset($msg))
                     <div class="alert alert-{{$msg['ESTADO']}}" role="alert">
