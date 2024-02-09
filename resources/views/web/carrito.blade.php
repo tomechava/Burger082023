@@ -4,17 +4,17 @@
 @endsection
 @section("contenido")
 <div class="container py-5">
-      <div class="row my-5">
+      <div class="row my-5 text-light">
             <div class="col-12">
                   <h1 class="h1">Mi Carrito <i class="fas fa-shopping-cart"></i></h1>
             </div>
       </div>
       <div class="row my-5">
             <div class="col-12">
-                  <table class="table table-light table-hover table-borderless border my-5">
+                  <table class="table table-hover table-dark border-none my-5 shadow table-borderless">
                         <thead>
                               <tr>
-                                    <th>Imagen</th>
+                                    <th></th>
                                     <th>Producto</th>
                                     <th>Precio</th>
                                     <th>Cantidad</th>
@@ -26,7 +26,7 @@
                               <?php $total = 0 ;?>
                               @foreach($productos as $producto)
                               <tr>  
-                                    <td><img src="files/{{$producto->imagen}}" alt="Imagen del Producto" class="img-thumbnail" width="200px"></td>
+                                    <td><img src="files/{{$producto->imagen}}" alt="Imagen del Producto" class="img-thumbnail border border-0 p-0 shadow" width="200px"></td>
                                     <td>{{$producto->nombre}}</td>
                                     <td>${{number_format($producto->precio, 2, ",", ".")}}</td>
                                     <td>{{$producto->cantidad}}</td>
