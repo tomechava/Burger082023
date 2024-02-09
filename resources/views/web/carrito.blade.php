@@ -3,6 +3,8 @@
 
 @endsection
 @section("contenido")
+<form method="POST" id="form1">
+<input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
 <div class="container py-5">
       <div class="row my-5 text-light">
             <div class="col-12">
@@ -28,9 +30,9 @@
                               <tr>  
                                     <td><img src="files/{{$producto->imagen}}" alt="Imagen del Producto" class="img-thumbnail border border-0 p-0 shadow" width="200px"></td>
                                     <td>{{$producto->nombre}}</td>
-                                    <td>${{number_format($producto->precio, 2, ",", ".")}}</td>
+                                    <td>${{number_format($producto->precio, 0, ",", ".")}}</td>
                                     <td>{{$producto->cantidad}}</td>
-                                    <td>${{number_format($producto->precio * $producto->cantidad, 2, ",", ".")}}</td>
+                                    <td>${{number_format($producto->precio * $producto->cantidad, 0, ",", ".")}}</td>
                                     <td>  
                                           <a href="carrito/eliminar?id={{$producto->idproducto}}" class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></a>
                                     </td>
@@ -39,24 +41,49 @@
                               @endforeach
                         </tbody>
                         <tfoot>
-                              <tr>
-                                    <td colspan="4" class="text-right">Total</td>
-                                    <td colspan="2" >${{number_format($total, 2, ",", ".")}}</td>
+                              <tr class="border-bottom">
+                                    <td colspan="4" class="text-right h2"><input type="hidden" name="txtTotal" value="{{$total}}">Total</td>
+                                    <td colspan="2" class="h2" >${{number_format($total, 0, ",", ".")}}</td>
                               </tr>
                               <tr>
-                                    <td colspan="4" class="text-right">
-                                          <label for="">Método de pago:</label>
+                                    <td class="text-right">
+                                          <label for="" >Método de pago:</label>
                                     </td>
-                                    <td colspan="2">
-                                          <select name="lstMetodoDePago" id="lstMetodoDePago" class="form-control">
+                                    <td>
+                                          <select name="lstMetodoDePago" id="lstMetodoDePago" class="form-control" required>
+                                                <option value="" selected disabled>Seleccionar</option>
                                                 <option value="sucursal">Pago en sucursal</option>
                                                 <option value="mercadopago">MercadoPago</option>
                                           </select>
                                     </td>
+                                    <td class="text-right">
+                                          <label for="" >Sucursal:</label>
+                                    </td>
+                                    <td>
+                                          <select name="lstSucursales" id="lstSucursales" class="form-control" required>
+                                          <option value="" selected disabled>Seleccionar</option>
+                                                @foreach($aSucursales as $sucursal)
+                                                <option value="{{$sucursal->idsucursal}}">{{$sucursal->nombre}}</option>
+                                                @endforeach
+                                          </select>
+                                    </td>
                               </tr>
+                              <tr>
+                                    <td class="text-right">
+                                          <label for="txtComentario">Comentarios:</label>
+                                    </td>
+                                    <td colspan="3">
+                                          <textarea name="txtComentario" id="txtComentario" class="form-control" rows="3"></textarea>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td colspan="6" class="text-center">
+                                          <button class="btn btn-orange-vibrant" type="submit" name="btnComprar">Comprar</button>
+                                    </td>
                         </tfoot>
                   </table>
             </div>
       </div>
 </div>
+</form>
 @endsection

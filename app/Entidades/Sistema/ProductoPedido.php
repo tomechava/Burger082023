@@ -71,9 +71,8 @@ class ProductoPedido extends Model{
                   $this->precio_unitario,
                   $this->cantidad,
                   $this->total,
-                  $this->idproductopedido
             ]);
-            return $this->idcliente = DB::getPdo()->lastInsertId();
+            return $this->idproductopedido = DB::getPdo()->lastInsertId();
       }
 
       public function obtenerTodos()

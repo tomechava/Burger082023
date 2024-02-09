@@ -24,6 +24,7 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::post('/contacto', 'ControladorWebContacto@enviar');
     Route::get('/carrito', 'ControladorWebCarrito@index');
     Route::get('/carrito/eliminar', 'ControladorWebCarrito@eliminar');
+    Route::post('/carrito', 'ControladorWebCarrito@confirmarCompra');
     Route::get('/mi-cuenta', 'ControladorWebMiCuenta@index');
     Route::post('/mi-cuenta', 'ControladorWebMiCuenta@guardar');
     Route::get('/pedido', 'ControladorWebPedido@index');

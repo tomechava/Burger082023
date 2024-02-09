@@ -181,7 +181,6 @@ class Pedido extends Model{
       public function insertar()
       {
             $sql = "INSERT INTO pedidos (
-                  nombre,
                   fecha,
                   total,
                   fk_idcliente,
@@ -189,9 +188,8 @@ class Pedido extends Model{
                   fk_idestadopedido,
                   metodo_pago,
                   comentario
-                  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+                  ) VALUES (?, ?, ?, ?, ?, ?, ?);";
             $result = DB::insert($sql, [
-                  $this->nombre,
                   $this->fecha,
                   $this->total,
                   $this->fk_idcliente,
@@ -200,15 +198,6 @@ class Pedido extends Model{
                   $this->metodo_pago,
                   $this->comentario,
             ]);
-
-            $cliente = new Cliente();
-            $cliente->obtenerPorId($this->fk_idcliente);
-            $this->nombreCliente = $cliente->nombre;
-            $this->telefonoCliente = $cliente->telefono;
-
-            $sucursal = new Sucursal();
-            $sucursal->obtenerPorId($this->fk_idsucursal);
-            $this->nombreSucursal = $sucursal->nombre;
 
             return $this->idpedido = DB::getPdo()->lastInsertId();
       }
