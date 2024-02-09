@@ -40,10 +40,18 @@
                         </tbody>
                         <tfoot>
                               <tr>
-                                    <td colspan="3" class="text-right">Total</td>
-                                    <td>${{number_format($total, 2, ",", ".")}}</td>
-                                    <td>
-                                          <a href="#" class="btn btn-orange-intense">Pagar</a>
+                                    <td colspan="4" class="text-right">Total</td>
+                                    <td colspan="2" >${{number_format($total, 2, ",", ".")}}</td>
+                              </tr>
+                              <tr>
+                                    <td colspan="4" class="text-right">
+                                          <label for="">Método de pago:</label>
+                                    </td>
+                                    <td colspan="2">
+                                          <select name="lstMetodoDePago" id="lstMetodoDePago" class="form-control">
+                                                <option value="sucursal">Pago en sucursal</option>
+                                                <option value="mercadopago">MercadoPago</option>
+                                          </select>
                                     </td>
                               </tr>
                         </tfoot>
