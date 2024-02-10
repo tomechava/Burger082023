@@ -74,7 +74,7 @@ class ControladorWebCarrito extends Controller
         $pedido->total = $request->input('txtTotal');
         $pedido->comentario = $request->input('txtComentario');
         $pedido->fk_idsucursal = $request->input('lstSucursales');
-        $pedido->fk_idestadopedido = 1; //2 es el id del estado "pendiente de retiro"
+        $pedido->fk_idestadopedido = 1; //1 = Pendiente de pago
         $pedido->metodo_pago = $request->input('lstMetodoDePago');
         $idPedido = $pedido->insertar();
 

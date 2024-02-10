@@ -64,10 +64,9 @@
                   </div>
             </form>
       </div>
-</div>
-<div class="container">
-      <div class="row my-5 text-white">
-            <div class="col-12">
+
+      <div class="row mb-5">
+            <div class="col-8 offset-2">
                   <h2 class="h2 mb-5">Pedidos</h2>
                   @if(count($pedidos) > 0)
                   <table class="table">
