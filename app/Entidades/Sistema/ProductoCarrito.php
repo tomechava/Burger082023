@@ -164,6 +164,12 @@ class ProductoCarrito extends Model{
                   fk_idcarrito=? AND fk_idproducto=?";
             $affected = DB::delete($sql, [$idCarrito, $idProducto]);
       }
+
+      public function eliminarPorCarrito($idCarrito){
+            $sql = "DELETE FROM productos_carritos WHERE
+                  fk_idcarrito=?";
+            $affected = DB::delete($sql, [$idCarrito]);
+      }
       
 }
 

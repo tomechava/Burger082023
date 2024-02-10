@@ -25,6 +25,7 @@ class ControladorWebPedido extends Controller
                               return redirect('/login');
                         }
                   }
+                  return redirect('/login');
             } else {
                   return redirect('/login');
             }

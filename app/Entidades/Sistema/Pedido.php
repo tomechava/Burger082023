@@ -270,6 +270,21 @@ class Pedido extends Model{
             return $lstRetorno;
       }
 
+      public function aprobar($idPedido)
+      {
+            $sql = "UPDATE pedidos SET
+                  fk_idestadopedido = ?
+                  WHERE idpedido=?";
+            $affected = DB::update($sql, [5, $idPedido]);
+      }
+
+      public function rechazar($idPedido)
+      {
+            $sql = "UPDATE pedidos SET
+                  fk_idestadopedido = ?
+                  WHERE idpedido=?";
+            $affected = DB::update($sql, [6, $idPedido]);
+      }
       
 }
 
