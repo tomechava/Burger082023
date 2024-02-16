@@ -9,7 +9,7 @@
 
     <!-- Start Content Page -->
     <div class="container-fluid py-5">
-        <div class="col-md-6 m-auto text-center">
+        <div class="col-md-6 m-auto text-light text-center">
             <h1 class="h1">Login</h1>
         </div>
     </div>

@@ -75,7 +75,7 @@
                               <div class="form-group col-lg-6">
                                     <label>Metodo de Pago: </label>
                                     <select name="lstMetodoPago" id="lstMetodoPago" class="form-control">
-                                          <option value="" disabled>Seleccionar</option>}
+                                          <option value="" disabled>Seleccionar</option>
                                           @foreach ($metodos_pago as $metodoPago)
                                           <option value="{{$metodoPago}}" <?php $pedido->metodo_pago == $metodoPago ? 'selected' : ''?>>{{$metodoPago}}</option>
                                           @endforeach

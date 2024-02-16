@@ -21,11 +21,9 @@ class ControladorWebPedido extends Controller
 
                               $aProductos = $entidadPedido->obtenerProductos($pedido->idpedido);
                               return view('web.pedido', compact('pedido', 'aProductos'));
-                        } else {
-                              return redirect('/login');
                         }
                   }
-                  return redirect('/login');
+                  return redirect('/mi-cuenta');
             } else {
                   return redirect('/login');
             }

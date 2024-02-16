@@ -40,34 +40,24 @@ class ControladorPedido extends Controller {
             $entidad->cargarDesdeRequest($request);
 
             //validaciones
-            if ($entidad->nombre == "") {   //Si falta completar algun campo
-                $msg["ESTADO"] = MSG_ERROR;
-                $msg["MSG"] = "Complete todos los datos";
+            if ($_POST["id"] > 0) {
+                //Es actualizacion
+                $entidad->guardar();
 
-                $pedido = new Producto();
-                $pedido->obtenerPorId($entidad->idpedido);
-        
-                return view('sistema.pedido-editar', compact('idpedido', 'fecha', 'total', 'fk_idcliente', 'fk_idsucursal', 'fk_idestadopedido', 'metodo_pago')) . '?id=' . $entidad->idpedido;
-        
+                $msg["ESTADO"] = MSG_SUCCESS;
+                $msg["MSG"] = OKINSERT;
             } else {
-                if ($_POST["id"] > 0) {
-                    //Es actualizacion
-                    $entidad->guardar();
+                //Es nuevo
+                $entidad->insertar();
 
-                    $msg["ESTADO"] = MSG_SUCCESS;
-                    $msg["MSG"] = OKINSERT;
-                } else {
-                    //Es nuevo
-                    $entidad->insertar();
-
-                    $msg["ESTADO"] = MSG_SUCCESS;
-                    $msg["MSG"] = OKINSERT;
-                }
-                
-                $_POST["id"] = $entidad->idpedido;
-                $titulo = "Listado de Pedidos";
-                return view('sistema.pedido-listar', compact('titulo', 'msg'));
+                $msg["ESTADO"] = MSG_SUCCESS;
+                $msg["MSG"] = OKINSERT;
             }
+            
+            $_POST["id"] = $entidad->idpedido;
+            $titulo = "Listado de Pedidos";
+            return view('sistema.pedido-listar', compact('titulo', 'msg'));
+            
         } catch (Exception $e) {
             $msg["ESTADO"] = MSG_ERROR;
             $msg["MSG"] = ERRORINSERT;
